@@ -18,6 +18,7 @@ final class Init
 		return [
 			Pages\Admin::class,
 			Base\Enque::class,
+			Base\CustomPostTypeController::class
 			// Base\SettingsLink::class
 		];
 
