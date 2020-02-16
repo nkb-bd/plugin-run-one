@@ -2,7 +2,7 @@
 
 
 /**
- * @package pluginRunOne 
+ * @package pluginRunOne
  */
 
 namespace PluginRunOne\Pages;
@@ -14,8 +14,8 @@ use PluginRunOne\Base\BaseController;
 use PluginRunOne\Api\Callbacks\AdminCallbacks;
 use PluginRunOne\Api\Callbacks\SanitizeCallbacksManager;
 
-class Admin extends BaseController
-{	
+class Dashboard extends BaseController
+{
 
 	public $page = array();
 
@@ -25,7 +25,6 @@ class Admin extends BaseController
 	public $subpages = array();
 
 	public $settings;
-
 
 
 	public function register(){
@@ -39,20 +38,15 @@ class Admin extends BaseController
 		$this->setPages();
 		$this->setSubPages();
 
-
 		//admin custom fields
         $this->setSettings();
         $this->setSections();
         $this->setFields();
 
-		
-		
-		// using method chaining
-		$this->settings->addPages ( $this->pages )->withSubPages('Dashboard')->addSubPages( $this->subpages )->register();
-		//settings link
-		add_filter( "plugin_action_links_" . $this->plugin, array( $this, 'settings_link' ) );
 
-	
+		// using method chaining creating page and sub pages
+		$this->settings->addPages ( $this->pages )->withSubPages('Dashboard')->addSubPages( $this->subpages )->register();
+
 	}
 
 	public function setPages()
@@ -60,12 +54,12 @@ class Admin extends BaseController
 		$this->pages = array(
 
 			array(
-				'page_title' => 'Plugin One', 
-				'menu_title' => 'Plugin Run One ', 
-				'capability' => 'manage_options', 
-				'menu_slug' => 'ninja_plugin_one', 
-				'callback' => array( $this->callbacks, 'adminDashboard' ), 
-				'icon_url' => 'dashicons-store', 
+				'page_title' => 'Plugin One',
+				'menu_title' => 'Plugin Run One ',
+				'capability' => 'manage_options',
+				'menu_slug' => 'ninja_plugin_one',
+				'callback' => array( $this->callbacks, 'adminDashboard' ),
+				'icon_url' => 'dashicons-store',
 				'position' => 110
 			)
 		);
@@ -74,25 +68,16 @@ class Admin extends BaseController
 
 	public function setSubPages()
 	{
-		$this->subpages = array( 
+		$this->subpages = array(
 
 			array(
-				'parent_slug' => 'ninja_plugin_one', 
-				'menu_title' => 'Custom Post Types', 
-				'page_title' => 'CPT', 
-				'capability' => 'manage_options', 
-				'menu_slug' => 'ninja_plugin_one_cpt', 
-				'callback' =>  array( $this->callbacks, 'customPostType' )  
-				
-			),
-			array(
-				'parent_slug' => 'ninja_plugin_one', 
-				'menu_title' => 'Custom Taxonomies', 
-				'page_title' => 'Taxonomy', 
-				'capability' => 'manage_options', 
-				'menu_slug' => 'ninja_plugin_one_tax', 
-				'callback' =>  array( $this->callbacks, 'customTaxonomies' )
-				
+//				'parent_slug' => 'ninja_plugin_one',
+//				'menu_title' => 'Custom Taxonomies  ',
+//				'page_title' => 'Taxonomy',
+//				'capability' => 'manage_options',
+//				'menu_slug' => 'ninja_plugin_one_tax',
+//				'callback' =>  array( $this->callbacks, 'customTaxonomies' )
+
 			),
 		);
 	}
@@ -154,6 +139,8 @@ class Admin extends BaseController
         //        );
         $args = array();
 
+
+        // array for creating main dashboard option checkboxes
         foreach ( $this->base_setting_managers as $key => $value ) {
             $args[] = array(
                 'id' => $key,
@@ -173,13 +160,7 @@ class Admin extends BaseController
     }
 
 
-	public function settings_link( $links ) {
 
-		$settings_link = '<a href="admin.php?page=plugin-run-one">Settings</a>';
-		array_push( $links, $settings_link );
-		return $links;
-	}
 
-	
-	
+
 }

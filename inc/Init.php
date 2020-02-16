@@ -2,13 +2,13 @@
 
 
 /**
- * @package pluginRunOne 
+ * @package pluginRunOne
  */
 
 namespace PluginRunOne;
 
-final class Init 
-{	
+final class Init
+{
     /*
 	* Store all the classes inside an array
 	* @return all full list of classes
@@ -16,10 +16,11 @@ final class Init
 	public static function get_services(){
 
 		return [
-			Pages\Admin::class,
 			Base\Enque::class,
-			Base\CustomPostTypeController::class
-			// Base\SettingsLink::class
+            Pages\Dashboard::class,
+            Base\CustomPostTypeController::class,
+            Base\TaxonomyManagerController::class,
+            Base\SettingsLink::class
 		];
 
 	}
@@ -27,7 +28,7 @@ final class Init
 
 	/*
 	* Loop through all the classes and initialize and call the register method if exists
-	* @return 
+	* @return
     */
 
 
@@ -58,7 +59,7 @@ final class Init
 		return $service;
 
 	}
-	
+
 }
 
 
@@ -90,7 +91,7 @@ final class Init
 // 	}
 
 // 	public function register(){
-		
+
 // 		// enque scripts
 // 		add_action( 'admin_enqueue_scripts', array($this, 'enque') );
 
@@ -115,7 +116,7 @@ final class Init
 // 	}
 
 // 	function admin_index(){
-		
+
 // 		require_once plugin_dir_path( __FILE__ ).'templates/admin.php';
 
 // 	}
@@ -124,11 +125,11 @@ final class Init
 // 	 * Method run on plugin activation
 // 	 */
 // 	function activate() {
-		
-		
+
+
 // 		ActivatePlugin::activate();
 // 		flush_rewrite_rules();
-	
+
 // 	}
 
 
@@ -136,11 +137,11 @@ final class Init
 // 	 * Method run on plugin dectivation
 // 	 */
 // 	function dectivate() {
-		
+
 // 		DeactivatePlugin::deactivate();
 // 		flush_rewrite_rules();
-		
-	
+
+
 // 	}
 
 // 	function enque(){
@@ -150,17 +151,17 @@ final class Init
 // 	}
 
 // 	public function ticket_data(){
-	
-		
+
+
 // 		global $wpdb;
 // 		$sql = $wpdb->prepare(
-// 			"SELECT ID,post_title,post_name,post_date FROM wp_posts WHERE post_type = 'ticket' ",  
+// 			"SELECT ID,post_title,post_name,post_date FROM wp_posts WHERE post_type = 'ticket' ",
 // 			'ticket'
 // 		);
-		
+
 // 		$results = $wpdb->get_results( $sql );
 // 		$data = json_encode($results);
-// 		wp_send_json( 
+// 		wp_send_json(
 // 			$results
 // 		);
 
@@ -168,7 +169,7 @@ final class Init
 
 // 	}
 
-	
+
 
 
 // }
@@ -177,7 +178,7 @@ final class Init
 //  * main function
 //  */
 
-	
+
 // 	$pluginRunOne = new PluginRunOne();
 // 	$pluginRunOne->register();
 

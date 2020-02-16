@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @package plugin run one 
+ * @package plugin run one
  */
 
 
@@ -31,8 +31,8 @@ class SettingsApi
     public function register()
 	{
 
-        //	    menu and pages
-		if( ! empty($this->admin_pages)) {
+        // menu and pages
+		if( ! empty($this->admin_pages) || ! empty($this->admin_subpages) ) {
 		    add_action( 'admin_menu', array($this,'addAdminMenu') );
 		}
         // admin custom fields
@@ -71,7 +71,7 @@ class SettingsApi
      * @return $this
      */
     public function withSubPages(string $title = null)
-	{	
+	{
 
 		if ( empty($this->admin_pages) ) {
 
@@ -80,16 +80,16 @@ class SettingsApi
 
 		$admin_page =  $this->admin_pages[0];
 
-		$subpage  = array( 
+		$subpage  = array(
 
 			array(
-				'parent_slug' => $admin_page['menu_slug'], 
-				'menu_title' => ($title) ? $title : $admin_page['menu_title'], 
-				'page_title' => $admin_page['page_title'], 
-				'capability' => $admin_page['capability'], 
-				'menu_slug' => $admin_page['menu_slug'], 
+				'parent_slug' => $admin_page['menu_slug'],
+				'menu_title' => ($title) ? $title : $admin_page['menu_title'],
+				'page_title' => $admin_page['page_title'],
+				'capability' => $admin_page['capability'],
+				'menu_slug' => $admin_page['menu_slug'],
 				'callback' =>  $admin_page['callback']
-				
+
 			)
 		);
 
@@ -106,13 +106,13 @@ class SettingsApi
     public function addAdminMenu()
 	{
 		foreach ($this->admin_pages as $page) {
-			
+
 			add_menu_page ( $page['page_title'], $page['menu_title'], $page['capability'], $page['menu_slug'], $page['callback'], $page['icon_url'], $page['position'] );
 
 		}
 
 		foreach ($this->admin_subpages as $page) {
-			
+
 			add_submenu_page ( $page['parent_slug'], $page['page_title'],$page['menu_title'], $page['capability'], $page['menu_slug'], $page['callback']);
 
 		}
@@ -160,6 +160,6 @@ class SettingsApi
         foreach ( $this->fields as $field ) {
             add_settings_field( $field["id"], $field["title"], ( isset( $field["callback"] ) ? $field["callback"] : '' ), $field["page"], $field["section"], ( isset( $field["args"] ) ? $field["args"] : '' ) );
         }
-        
+
 	}
 }

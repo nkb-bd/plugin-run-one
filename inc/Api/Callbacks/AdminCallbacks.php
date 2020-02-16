@@ -2,7 +2,7 @@
 
 
 /**
- * @package pluginRunOne 
+ * @package pluginRunOne
  */
 
 namespace PluginRunOne\Api\Callbacks;
@@ -14,17 +14,17 @@ class AdminCallbacks extends BaseController
 {
 	public function adminDashboard()
 	{
-		 return require_once("$this->plugin_path/templates/admin.php"); 
+		 return require_once("$this->plugin_path/templates/admin.php");
 	}
 
 	public function customPostType()
 	{
-		 return require_once("$this->plugin_path/templates/cpt.php"); 
+		 return require_once("$this->plugin_path/templates/cpt.php");
 	}
 
 	public function customTaxonomies()
 	{
-		 return require_once("$this->plugin_path/templates/custom_taxonomies.php"); 
+		 return require_once("$this->plugin_path/templates/custom_taxonomies.php");
 	}
 
 
@@ -45,10 +45,14 @@ class AdminCallbacks extends BaseController
 //        return $input;
 //    }
 //
-//    public function pluginOneAdminSection()
-//    {
-//        echo 'Check this beautiful section!';
-//    }
+    public function adminCpt()
+    {
+        echo 'Check this beautiful section!';
+    }
+    public function adminTaxonomy()
+    {
+        echo 'Check this beautiful section!';
+    }
 
     public function pluginOneFullName()
     {

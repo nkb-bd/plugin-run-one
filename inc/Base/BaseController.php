@@ -1,13 +1,13 @@
 <?php
 
 /**
- * @package plugin run one 
+ * @package plugin run one
  */
 
 
 namespace PluginRunOne\Base;
 
-class BaseController 
+class BaseController
 {
 	public $plugin_path;
 	public $plugin_url;
@@ -33,5 +33,12 @@ class BaseController
             'chat_manager' => 'Activate Chat Manager'
         );
 
+	}
+
+    public function featureActivated(String $key)
+    {
+        $option = get_option('ninja_plugin_one');
+
+        return isset($option[ $key ]) ? $option[ $key ] : false;
 	}
 }
