@@ -9,8 +9,9 @@
 namespace PluginRunOne\Base;
 
 
-use \PluginRunOne\Base\BaseController;
 use \PluginRunOne\Api\SettingsApi;
+use \PluginRunOne\Base\BaseController;
+use PluginRunOne\Api\Callbacks\CptCallbacks;
 use PluginRunOne\Api\Callbacks\AdminCallbacks;
 
 
@@ -22,6 +23,8 @@ class CustomPostTypeController extends BaseController
 
     public $callbacks;
 
+    public $cpt_callbacks;
+
     public $custom_post_types = array();
 
 
@@ -32,13 +35,19 @@ class CustomPostTypeController extends BaseController
         if (!$this->featureActivated('cpt_manager')){
             return ;
         }
-        $this->settings = new SettingsApi;
-        $this->callbacks = new AdminCallbacks;
+        $this->settings = new SettingsApi();
+        $this->callbacks = new AdminCallbacks();
+        $this->callbacks = new CptCallbacks();
 
         $this->setSubPages();
 
         // using method chaining creating sub pages
         $this->settings->addSubPages( $this->subpages )->register();
+
+        //cpt  custom fields
+        $this->setSettings();
+        $this->setSections();
+        $this->setFields();
 
         // store custom post types
         $this->storeCustomPostTypes();
@@ -172,6 +181,63 @@ class CustomPostTypeController extends BaseController
             )
         );
     }
+
+
+
+    public function setSettings()
+    {
+        //        creating settings entry in database
+        $args = array(
+            array(
+                'option_group' => 'plugin_one_settings_group',
+                'option_name' => 'ninja_plugin_one',
+                'callback' => array( $this->sanitize_callbacks_manager, 'checkboxSanitize' )
+            )
+        );
+
+
+        $this->settings->setSettings( $args );
+    }
+
+    public function setSections()
+    {
+        $args = array(
+            array(
+                'id' => 'plugin_one_index',
+                'title' => 'Settings Manager',
+                'callback' => array( $this->sanitize_callbacks_manager, 'adminSectionManager' ),
+                'page' => 'ninja_plugin_one'
+            )
+        );
+
+        $this->settings->setSections( $args );
+    }
+
+    public function setFields()
+    {
+
+        $args = array();
+
+
+        // array for creating main dashboard option checkboxes
+        foreach ( $this->base_setting_managers as $key => $value ) {
+            $args[] = array(
+                'id' => $key,
+                'title' => $value,
+                'callback' => array( $this->sanitize_callbacks_manager, 'checkboxField' ),
+                'page' => 'ninja_plugin_one',
+                'section' => 'plugin_one_index',
+                'args' => array(
+                    'label_for' => $key,
+                    'class' => 'ui-toggle',
+                    'option_name' =>'ninja_plugin_one'
+                )
+            );
+        }
+
+        $this->settings->setFields( $args );
+    }
+
 
 
 

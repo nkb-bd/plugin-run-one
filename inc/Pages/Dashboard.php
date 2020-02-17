@@ -94,16 +94,6 @@ class Dashboard extends BaseController
             )
         );
 
-        //base_setting_managers from base class
-        //        $args = array();
-        //
-        //        foreach ( $this->base_setting_managers as $key => $value ) {
-        //            $args[] = array(
-        //                'option_group' => 'plugin_one_settings_group',
-        //                'option_name' => $key,
-        //                'callback' => array( $this->sanitize_callbacks_manager, 'checkboxSanitize' )
-        //            );
-        //        }
 
         $this->settings->setSettings( $args );
     }
