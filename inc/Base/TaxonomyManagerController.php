@@ -9,18 +9,26 @@
 namespace PluginRunOne\Base;
 
 
+use PluginRunOne\Api\Callbacks\TaxonomyCallbacks;
 use \PluginRunOne\Base\BaseController;
 use \PluginRunOne\Api\SettingsApi;
 use PluginRunOne\Api\Callbacks\AdminCallbacks;
+use PluginRunOne\Api\Callbacks\CptCallbacks;
 
 
 class TaxonomyManagerController extends BaseController
 {
-    public $subpages = array();
-
     public $settings;
 
     public $callbacks;
+
+    public $subpages = array();
+
+    public $taxonomies = array();
+
+    public $tax_callbacks;
+
+
 
 
     public function register()
@@ -30,13 +38,18 @@ class TaxonomyManagerController extends BaseController
         if (!$this->featureActivated('cpt_manager')){
             return ;
         }
-        $this->settings = new SettingsApi;
+        $this->settings = new SettingsApi();
 
-        $this->callbacks = new AdminCallbacks;
+        $this->callbacks = new AdminCallbacks();
+
+        $this->tax_callbacks = new TaxonomyCallbacks();
 
 
         $this->setSubPages();
 
+
+        $this->setSettings();
+        $this->setSections();
 
         // using method chaining creating sub pages
         $this->settings->addSubPages( $this->subpages )->register();
@@ -73,6 +86,33 @@ class TaxonomyManagerController extends BaseController
 
             )
         );
+    }
+
+    public function setSettings()
+    {
+        $args = array(
+            array(
+                'option_group' => 'ninja_plugin_one_tax_settings',
+                'option_name' => 'ninja_plugin_one_tax_option',
+                'callback' => array( $this->cpt_callbacks, 'cptSanitize' )
+            )
+        );
+
+        $this->settings->setSettings( $args );
+    }
+
+    public function setSections()
+    {
+        $args = array(
+            array(
+                'id' => 'ninja_plugin_one_tax_index',
+                'title' => 'Taxonomies Manager',
+                'callback' => array( $this->cpt_callbacks, 'cptSectionManager' ),
+                'page' => 'ninja_plugin_one_taxonomy'
+            )
+        );
+
+        $this->settings->setSections( $args );
     }
 
 

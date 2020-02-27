@@ -133,8 +133,8 @@ window.addEventListener("load", function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/nakib/Practice/wp_lab/wp-content/plugins/plugin-run-one/src/js/boot.js */"./src/js/boot.js");
-module.exports = __webpack_require__(/*! /Users/nakib/Practice/wp_lab/wp-content/plugins/plugin-run-one/src/scss/admin/app.scss */"./src/scss/admin/app.scss");
+__webpack_require__(/*! C:\xampp\htdocs\fluentforms\wp-content\plugins\plugin-run-one\src\js\boot.js */"./src/js/boot.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\fluentforms\wp-content\plugins\plugin-run-one\src\scss\admin\app.scss */"./src/scss/admin/app.scss");
 
 
 /***/ })

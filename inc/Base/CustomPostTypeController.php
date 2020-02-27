@@ -206,14 +206,14 @@ class CustomPostTypeController extends BaseController
                     'supports'              => array( 'title', 'editor', 'thumbnail' ),
                     'taxonomies'            => array( 'category', 'post_tag' ),
                     'hierarchical'          => false,
-                    'public'                => $option['public'],
+                    'public'                => isset($option['public'])?: false ,
                     'show_ui'               => true,
                     'show_in_menu'          => true,
                     'menu_position'         => 5,
                     'show_in_admin_bar'     => true,
                     'show_in_nav_menus'     => true,
                     'can_export'            => true,
-                    'has_archive'           => $option['has_archive'],
+                    'has_archive'           => isset($option['has_archive'])?: false,
                     'exclude_from_search'   => false,
                     'publicly_queryable'    => true,
                     'capability_type'       => 'post'
@@ -225,7 +225,7 @@ class CustomPostTypeController extends BaseController
     function registerCustomPostTypes ()
     {
 
-        // registering post types by looping through the custom_post_types arra
+        // registering post types by looping through the custom_post_types array
         foreach ($this->custom_post_types as $post_type) {
             register_post_type( $post_type['post_type'],
                 array(

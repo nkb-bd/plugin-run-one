@@ -1,6 +1,10 @@
+import 'code-prettify';
+
 window.addEventListener("load", function() {
 
-    // store tabs variables
+    PR.prettyPrint();
+
+    //  tabs
     var tabs = document.querySelectorAll("ul.nav-tabs > li");
 
     for (var i = 0; i < tabs.length; i++) {

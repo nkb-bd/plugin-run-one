@@ -7,40 +7,39 @@
 
 namespace PluginRunOne\Api\Callbacks;
 
-class CptCallbacks
+class TaxonomyCallbacks
 {
 
-    public function cptSectionManager()
+    public function taxonomySectionManager()
     {
         echo 'Create as many Custom Post Types as you want.';
     }
 
-    public function cptSanitize( $input )
+    public function taxonomySanitize( $input )
     {
 
-        $output = get_option('ninja_plugin_one_cpt_option');
+        $output = get_option('ninja_plugin_one_tax_option');
 
-        if (isset($_POST['remove']) ){
 
-            unset($output[$_POST['remove']]); //deleting the cpt from delete form using the key
+        if ( isset($_POST["remove"]) ) {
+            unset($output[$_POST["remove"]]);
+
             return $output;
         }
 
-        if(empty($output)){
+        if ( count($output) == 0 ) {
+            $output[$input['taxonomy']] = $input;
 
-            $input = array($input['post_type'] => $input);
-            return  $output = $input;
+            return $output;
         }
 
-
-        foreach ($output as $key => $value){
-            if ( $input['post_type'] === $key){
-               $output[$key] = $input;
-            }else{
-                $output[$input['post_type']] = $input;
+        foreach ($output as $key => $value) {
+            if ($input['taxonomy'] === $key) {
+                $output[$key] = $input;
+            } else {
+                $output[$input['taxonomy']] = $input;
             }
         }
-
 
         return $output;
     }
@@ -52,14 +51,14 @@ class CptCallbacks
         $value ="";
         $readonly = '';
 
-        if (isset($_POST["edit_post"]) ){
+        if (isset($_POST["edit_taxonomy"]) ){
 
             $input = get_option( $option_name );
-            $value= $input[ $_POST["edit_post"] ][ $name ];
+            $value= $input[ $_POST["edit_taxonomy"] ][ $name ];
 
-            if ($name=='post_type'){
-                $readonly = "readonly"; //diable input for post primary value
-            }
+//            if ($name=='post_type'){
+//                $readonly = "readonly"; //diable input for post primary value
+//            }
 
         }
 
@@ -74,10 +73,10 @@ class CptCallbacks
         $option_name = $args['option_name'];
         $checked = false;
 
-        if (isset($_POST["edit_post"]) ){
+        if (isset($_POST["edit_taxonomy"]) ){
 
             $checkbox = get_option( $option_name );
-            $checked = isset($checkbox[$_POST["edit_post"]][$name]) ?: false;
+            $checked = isset($checkbox[$_POST["edit_taxonomy"]][$name]) ?: false;
 
         }
 

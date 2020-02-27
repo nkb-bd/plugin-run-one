@@ -48,7 +48,8 @@ class AdminCallbacks extends BaseController
 
     public function adminTaxonomy()
     {
-        echo 'Check this beautiful section!';
+        return require_once("$this->plugin_path/templates/custom_taxonomies.php");
+
     }
 
     public function pluginOneFullName()
