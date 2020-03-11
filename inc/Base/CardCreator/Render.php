@@ -23,7 +23,7 @@ class Render extends BaseController
         //styles for front end
         wp_enqueue_style(
             'plugin-run-on-style-card',
-            $this->plugin_url.'assets/dist/css/plugin-one-card-public.css',
+            $this->plugin_url.'assets/public/css/plugin-one-card-public.css',
             '',
             $this->version
         );

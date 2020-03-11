@@ -1,6 +1,6 @@
 {
-    "/dist/js/plugin-one-admin.js": "/dist/js/plugin-one-admin.js",
-    "/dist/css/plugin-one-admin.css": "/dist/css/plugin-one-admin.css",
-    "/dist/css/plugin-one-card-public.css": "/dist/css/plugin-one-card-public.css",
-    "/dist/js/plugin-one-card-admin.js": "/dist/js/plugin-one-card-admin.js"
+    "/admin/js/plugin-one-admin.js": "/admin/js/plugin-one-admin.js",
+    "/admin/css/plugin-one-admin.css": "/admin/css/plugin-one-admin.css",
+    "/public/css/plugin-one-card-public.css": "/public/css/plugin-one-card-public.css",
+    "/admin/js/plugin-one-card-admin.js": "/admin/js/plugin-one-card-admin.js"
 }

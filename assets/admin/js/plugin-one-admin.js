@@ -1886,15 +1886,27 @@ window.addEventListener("load", function () {
 
 /***/ }),
 
+/***/ "./src/scss/card-public.scss":
+/*!***********************************!*\
+  !*** ./src/scss/card-public.scss ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ 0:
-/*!********************************************************!*\
-  !*** multi ./src/js/main.js ./src/scss/admin/app.scss ***!
-  \********************************************************/
+/*!************************************************************************************!*\
+  !*** multi ./src/js/main.js ./src/scss/admin/app.scss ./src/scss/card-public.scss ***!
+  \************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! /Users/nakib/Practice/wp_lab/wp-content/plugins/plugin-run-one/src/js/main.js */"./src/js/main.js");
-module.exports = __webpack_require__(/*! /Users/nakib/Practice/wp_lab/wp-content/plugins/plugin-run-one/src/scss/admin/app.scss */"./src/scss/admin/app.scss");
+__webpack_require__(/*! /Users/nakib/Practice/wp_lab/wp-content/plugins/plugin-run-one/src/scss/admin/app.scss */"./src/scss/admin/app.scss");
+module.exports = __webpack_require__(/*! /Users/nakib/Practice/wp_lab/wp-content/plugins/plugin-run-one/src/scss/card-public.scss */"./src/scss/card-public.scss");
 
 
 /***/ })
