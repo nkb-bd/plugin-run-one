@@ -1,0 +1,8 @@
+
+/* Change theme color variable */
+$--color-primary: rgb(0, 162, 211);
+ 
+ /* change icon font path variable, required */
+$--font-path: '~element-ui/lib/xtheme-chalk/fonts';
+ 
+@import "~element-ui/packages/theme-chalk/src/index";

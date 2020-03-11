@@ -43,6 +43,10 @@ class Dashboard extends BaseController
         $this->setSections();
         $this->setFields();
 
+        if (is_admin()) {
+            $this->adminHooks();
+        }
+
 
 		// using method chaining creating page and sub pages
 		$this->settings->addPages ( $this->pages )->withSubPages('Dashboard')->addSubPages( $this->subpages )->register();
@@ -59,7 +63,7 @@ class Dashboard extends BaseController
 				'capability' => 'manage_options',
 				'menu_slug' => 'ninja_plugin_one',
 				'callback' => array( $this->callbacks, 'adminDashboard' ),
-				'icon_url' => 'dashicons-store',
+				'icon_url' => 'dashicons-marker',
 				'position' => 110
 			)
 		);
@@ -68,18 +72,7 @@ class Dashboard extends BaseController
 
 	public function setSubPages()
 	{
-//		$this->subpages = array(
-//
-//			array(
-//				'parent_slug' => 'ninja_plugin_one',
-//				'menu_title' => 'Custom Taxonomies  ',
-//				'page_title' => 'Taxonomy',
-//				'capability' => 'manage_options',
-//				'menu_slug' => 'ninja_plugin_one_tax',
-//				'callback' =>  array( $this->callbacks, 'customTaxonomies' )
-//
-//			),
-//		);
+
 	}
 
 
@@ -90,7 +83,7 @@ class Dashboard extends BaseController
             array(
                 'option_group' => 'plugin_one_settings_group',
                 'option_name' => 'ninja_plugin_one',
-                'callback' => array( $this->sanitize_callbacks_manager, 'checkboxSanitize' )
+                'callback' => ''
             )
         );
 
@@ -147,6 +140,13 @@ class Dashboard extends BaseController
         }
 
         $this->settings->setFields( $args );
+    }
+
+    public function adminHooks()
+    {
+
+        $adminAjax = new \PluginRunOne\Base\CardCreator\AjaxHandler;
+        $adminAjax->register();
     }
 
 

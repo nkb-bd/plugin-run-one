@@ -20,7 +20,8 @@ final class Init
             Pages\Dashboard::class,
             Base\CustomPostTypeController::class,
             Base\TaxonomyManagerController::class,
-            Base\SettingsLink::class
+			Base\SettingsLink::class,
+			Base\CardCreatorController::class
 		];
 
 	}

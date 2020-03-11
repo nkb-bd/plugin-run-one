@@ -4,6 +4,9 @@
     <include_path>
       <path value="$USER_HOME$/Projects/wp-empty" />
       <path value="$PROJECT_DIR$/../../../../wp" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/vendor/symfony/var-dumper" />
+      <path value="$PROJECT_DIR$/vendor/composer" />
     </include_path>
   </component>
 </project>

@@ -18,31 +18,32 @@ class CptCallbacks
     public function cptSanitize( $input )
     {
 
-        $output = get_option('ninja_plugin_one_cpt_option');
-
-        if (isset($_POST['remove']) ){
-
-            unset($output[$_POST['remove']]); //deleting the cpt from delete form using the key
-            return $output;
-        }
-
-        if(empty($output)){
-
-            $input = array($input['post_type'] => $input);
-            return  $output = $input;
-        }
-
-
-        foreach ($output as $key => $value){
-            if ( $input['post_type'] === $key){
-               $output[$key] = $input;
-            }else{
-                $output[$input['post_type']] = $input;
-            }
-        }
-
-
-        return $output;
+//        $output = get_option('ninja_plugin_one_cpt_option');
+//
+//        if (isset($_POST['remove']) ){
+//
+//            unset($output[$_POST['remove']]); //deleting the cpt from delete form using the key
+//            return $output;
+//        }
+//
+//        if(empty($output)){
+//
+//            $input = array($input['post_type'] => $input);
+//            return  $output = $input;
+//        }
+//
+//
+//        foreach ($output as $key => $value){
+//            if ( $input['post_type'] === $key){
+//               $output[$key] = $input;
+//            }else{
+//                $output[$input['post_type']] = $input;
+//            }
+//        }
+////        echo    '<pre>';
+////        print_r($output);exit;
+//
+//        return $output;
     }
 
     public function textField( $args )

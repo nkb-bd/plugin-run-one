@@ -1,5 +1,6 @@
 import 'code-prettify';
 
+
 window.addEventListener("load", function() {
 
     PR.prettyPrint();
@@ -24,6 +25,12 @@ window.addEventListener("load", function() {
         clickedTab.classList.add("active");
         document.querySelector(activePaneID).classList.add("active");
 
+        console.log('ok main')
+
     }
 
+
+
+
 });
+

@@ -93,25 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-window.addEventListener("load", function () {
-  // store tabs variables
-  var tabs = document.querySelectorAll("ul.nav-tabs > li");
-
-  for (var i = 0; i < tabs.length; i++) {
-    tabs[i].addEventListener("click", switchTab);
-  }
-
-  function switchTab(event) {
-    event.preventDefault();
-    document.querySelector("ul.nav-tabs li.active").classList.remove("active");
-    document.querySelector(".tab-pane.active").classList.remove("active");
-    var clickedTab = event.currentTarget;
-    var anchor = event.target;
-    var activePaneID = anchor.getAttribute("href");
-    clickedTab.classList.add("active");
-    document.querySelector(activePaneID).classList.add("active");
-  }
-});
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nError: ENOENT: no such file or directory, open '/Users/nakib/Practice/wp_lab/wp-content/plugins/plugin-run-one/src/js/boot.js'");
 
 /***/ }),
 
@@ -133,8 +115,8 @@ window.addEventListener("load", function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\fluentforms\wp-content\plugins\plugin-run-one\src\js\boot.js */"./src/js/boot.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\fluentforms\wp-content\plugins\plugin-run-one\src\scss\admin\app.scss */"./src/scss/admin/app.scss");
+__webpack_require__(/*! /Users/nakib/Practice/wp_lab/wp-content/plugins/plugin-run-one/src/js/boot.js */"./src/js/boot.js");
+module.exports = __webpack_require__(/*! /Users/nakib/Practice/wp_lab/wp-content/plugins/plugin-run-one/src/scss/admin/app.scss */"./src/scss/admin/app.scss");
 
 
 /***/ })

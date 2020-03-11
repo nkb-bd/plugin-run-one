@@ -1,5 +1,6 @@
 {
-    "/admin/js/plugin_one.js": "/admin/js/plugin_one.js",
-    "/js/boot.js": "/js/boot.js",
-    "/admin/css/plugin_one.css": "/admin/css/plugin_one.css"
+    "/dist/js/plugin-one-admin.js": "/dist/js/plugin-one-admin.js",
+    "/dist/css/plugin-one-admin.css": "/dist/css/plugin-one-admin.css",
+    "/dist/css/plugin-one-card-public.css": "/dist/css/plugin-one-card-public.css",
+    "/dist/js/plugin-one-card-admin.js": "/dist/js/plugin-one-card-admin.js"
 }

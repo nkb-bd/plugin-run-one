@@ -1871,6 +1871,7 @@ window.addEventListener("load", function () {
     document.querySelector(activePaneID).classList.add("active");
   }
 });
+console.log('ok main');
 
 /***/ }),
 
@@ -1881,7 +1882,7 @@ window.addEventListener("load", function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\fluentforms\wp-content\plugins\plugin-run-one\src\js\main.js */"./src/js/main.js");
+module.exports = __webpack_require__(/*! /Users/nakib/Practice/wp_lab/wp-content/plugins/plugin-run-one/src/js/main.js */"./src/js/main.js");
 
 
 /***/ })

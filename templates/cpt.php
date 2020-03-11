@@ -38,7 +38,9 @@
             $options = get_option('ninja_plugin_one_cpt_option');
 
             if (!empty($options)){
-
+                echo '<pre>';
+                print_r($options);
+                echo '</pre>';
                 $i = 0;
                 foreach ($options as $option) {
 

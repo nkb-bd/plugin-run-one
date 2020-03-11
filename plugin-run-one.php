@@ -26,7 +26,11 @@ if (class_exists('PluginRunOne\Init')) {
 
 	PluginRunOne\Init::register_services();
 
-	register_activation_hook( __FILE__ , array( 'PluginRunOne\Base\ActivatePlugin', 'activate' ) );
+	register_activation_hook(__FILE__,
+        function () {
+            $act = new PluginRunOne\Base\ActivatePlugin;
+            $act->activate();
+	});
 	register_deactivation_hook( __FILE__ , array( 'PluginRunOne\Base\DeactivatePlugin', 'deactivate' ) );
 }
 

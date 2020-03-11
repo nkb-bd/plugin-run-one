@@ -29,8 +29,11 @@ class CustomPostTypeController extends BaseController
 
     public function register()
     {
-        if ( ! $this->featureActivated( 'cpt_manager' ) ) {
+
+
+        if ( $this->featureActivated( 'cpt_manager' )== 'false'  ) {
             return;
+
         }
 
         $this->settings = new SettingsApi();
@@ -56,6 +59,19 @@ class CustomPostTypeController extends BaseController
         }
     }
 
+
+
+    public function updateCpt($data)
+    {
+
+
+        $success = update_option('ninja_plugin_one_cpt_option',$data);
+        if($success){
+            return true;
+        }
+        return false;
+
+    }
     public function setSubpages()
     {
         $this->subpages = array(
@@ -64,7 +80,7 @@ class CustomPostTypeController extends BaseController
                 'page_title' => 'Custom Post Types',
                 'menu_title' => 'CPT Manager',
                 'capability' => 'manage_options',
-                'menu_slug' => 'ninja_plugin_one_cpt',
+                'menu_slug' => 'ninja_plugin_one#/cpt_manager',
                 'callback' => array( $this->callbacks, 'adminCpt' )
             )
         );
@@ -76,7 +92,7 @@ class CustomPostTypeController extends BaseController
             array(
                 'option_group' => 'ninja_plugin_one_cpt_settings',
                 'option_name' => 'ninja_plugin_one_cpt_option',
-                'callback' => array( $this->cpt_callbacks, 'cptSanitize' )
+                'callback' =>''
             )
         );
 
@@ -222,6 +238,7 @@ class CustomPostTypeController extends BaseController
         }
 
     }
+
     function registerCustomPostTypes ()
     {
 
@@ -278,4 +295,30 @@ class CustomPostTypeController extends BaseController
             );
         }
     }
+
+    public function exportCpt($key)
+    {
+
+
+        $option = get_option( 'ninja_plugin_one_cpt_option' );
+
+        if(array_key_exists($key,$option)){
+
+
+             ob_clean();
+             ob_start();
+            //      card html
+            require_once("$this->plugin_path/templates/cpt-export.php");
+
+            $content = ob_get_clean();
+
+            echo $content;
+
+        }
+
+        exit;
+
+    }
+
+
 }

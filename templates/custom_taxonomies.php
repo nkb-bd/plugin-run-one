@@ -29,50 +29,49 @@
                     <th  class="manage-column column-columnname" scope="col">Singular Name</th>
                     <th  class="manage-column column-columnname " scope="col">Plural Name</th>
                     <th class="manage-column column-columnname " scope="col">Public</th>
-                    <th  class="manage-column column-columnname " scope="col">Archive</th>
                     <th  class="manage-column column-columnname " scope="col">Action</th>
 
                 </tr>
                 </thead>
                 <?php
-//                $options = get_option('ninja_plugin_one_cpt_option');
-//
-//                if (!empty($options)){
-//
-//                    $i = 0;
-//                    foreach ($options as $option) {
-//
-//                        $public = isset($option['public']) ? "TRUE" : "FALSE";
-//                        $has_archive = isset($option['has_archive']) ? "TRUE" : "FALSE";
-//
-//                        echo'<tr class="'.($i%2==0 ? 'alternate': '').'">'.
-//                            '<th class="check-column" scope="row">'.$option['post_type'].'</th>'.
-//                            '<td class="column-columnname">'.$option['singular_name'].'</td>'.
-//                            '<td class="column-columnname">'.$option['plural_name'].'</td>'.
-//                            '<td class="column-columnname">'.$public.'</td>'.
-//                            '<td class="column-columnname">'.$has_archive.'</td>'.
-//                            '<td class="column-columnname">';
-//
-//                        echo  '<form method="post" action="" class="inline-block">';
-//                        echo '<input type="hidden" name="edit_taxonomy" value="'.$option['post_type'].'">';
-//                        submit_button('Edit', 'primary small', 'submit',false);
-//                        echo  '</form> ';
-//
-//
-//                        echo  '<form method="post" action="options.php" class="inline-block">';
-//                        echo '<input type="hidden" name="remove" value="'.$option['post_type'].'">';
-//                        settings_fields('ninja_plugin_one_cpt_settings'); //option_group from setttings
-//                        submit_button('Delete','delete danger small', 'submit',false, array(
-//                            'onclick' => 'return confirm("Confirm Delete ?");'
-//                        ));
-//
-//                        echo  '</form>'.
-//                            '</td>'.
-//                            '</tr>';
-//                        $i++;
-//
-//                    }
-//                }
+               $options = get_option('ninja_plugin_one_tax_option');
+
+              
+               if (!empty($options)){
+
+                   $i = 0;
+                   foreach ($options as $option) {
+
+
+
+                       $hierarchical = isset($option['hierarchical']) ? "TRUE" : "FALSE";
+
+                       echo'<tr class="'.($i%2==0 ? 'alternate': '').'">'.
+                           '<th class="check-column" scope="row">'.$option['taxonomy'].'</th>'.
+                           '<td class="column-columnname">'.$option['singular_name'].'</td>'.
+                           '<td class="column-columnname">'.$hierarchical.'</td>'.
+                           '<td class="column-columnname">';
+
+                       echo  '<form method="post" action="" class="inline-block">';
+                       echo '<input type="hidden" name="edit_taxonomy" value="'.$option['taxonomy'].'">';
+                       submit_button('Edit', 'primary small', 'submit',false);
+                       echo  '</form> ';
+
+
+                       echo  '<form method="post" action="options.php" class="inline-block">';
+                       echo '<input type="hidden" name="remove" value="'.$option['taxonomy'].'">';
+                       settings_fields('ninja_plugin_one_tax_settings'); //option_group from setttings
+                       submit_button('Delete','delete danger small', 'submit',false, array(
+                           'onclick' => 'return confirm("Confirm Delete ?");'
+                       ));
+
+                       echo  '</form>'.
+                           '</td>'.
+                           '</tr>';
+                       $i++;
+
+                   }
+               }
                 ?>
 
                 </tbody>
@@ -80,12 +79,12 @@
         </div>
 
         <div id="tab-2" class="tab-pane <?php echo isset($_POST['edit_taxonomy'])? 'active': '' ?>">
-            <h3>Add New CPT</h3>
+            <h3>Add New Taxonomies</h3>
             <form method="post" action="options.php">
                 <?php
-//                settings_fields('ninja_plugin_one_cpt_settings'); //option_group from setttings
-//                do_settings_sections('ninja_plugin_one_cpt'); //page slug
-//                submit_button();
+               settings_fields('ninja_plugin_one_tax_settings'); //option_group from setttings
+               do_settings_sections('ninja_plugin_one_taxonomy'); //page slug
+               submit_button();
                 ?>
             </form>
         </div>

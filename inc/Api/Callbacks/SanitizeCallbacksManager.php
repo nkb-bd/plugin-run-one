@@ -22,6 +22,7 @@ class SanitizeCallbacksManager extends BaseController
             $output[$key] = ( isset( $input[$key] ) && $input[$key] ) ? true : false;
         }
 
+
         return $output;
 	}
 
@@ -32,15 +33,15 @@ class SanitizeCallbacksManager extends BaseController
 
     public function checkboxField( $args)
     {
-        $name = $args['label_for'];
-        $classes = $args['class'];
-        $option_name = $args['option_name'];
-        $checkbox = get_option( $option_name );
-        $checked = isset($checkbox[$name]) &&  $checkbox[$name] == true ?: false;
+//        $name = $args['label_for'];
+//        $classes = $args['class'];
+//        $option_name = $args['option_name'];
+//        $checkbox = get_option( $option_name );
+//
+//        $checked = isset($checkbox[$name]) ? ($checkbox[$name] ? true : false) : false;
+//
+//        echo '<div class="' . $classes . '"><input type="checkbox" id="' . $name . '" name="' . $option_name . '[' . $name . ']" value="1" class="" ' . ( $checked ? 'checked' : '') . '><label for="' . $name . '"><div></div></label></div>';
 
-
-        echo '<div class="' . $classes . '"><input        $checked = isset($checkbox[$name]) ? ($checkbox[$name] ? true : false) : false;
- type="checkbox" id="' . $name . '" name="' . $option_name . '[' . $name . ']" value="1" class="" ' . ( $checked ? 'checked' : '') . '><label for="' . $name . '"><div></div></label></div>';
-  }
+    }
 
 }
