@@ -7,4 +7,12 @@
 
 @import 'element-variables';
 
+/* theme color */
+$--color-primary: teal;
+
+/* icon font path, required */
+$--font-path: '/theme-chalk/fonts';
+
+@import "~element-ui/packages/theme-chalk/src/index";
+
 
