@@ -18,9 +18,7 @@ class TaxonomyCallbacks
     public function taxonomySanitize( $input )
     {   
 
-       
         $output = get_option('ninja_plugin_one_tax_option');
-        
 
         if ( isset($_POST["remove"]) ) {
             unset($output[$_POST["remove"]]);

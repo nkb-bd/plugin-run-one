@@ -46,12 +46,6 @@ class TaxonomyManagerController extends BaseController
 
         $this->setSubPages();
 
-        $this->setSettings();
-        
-        $this->setSections();
-
-        $this->setFields();
-
 
         // using method chaining creating sub pages
         $this->settings->addSubPages( $this->subpages )->register();
@@ -63,22 +57,8 @@ class TaxonomyManagerController extends BaseController
             add_action( 'init', array( $this, 'registerCustomTaxonomy' ));
         }
 
-
     }
 
-    function activate ()
-    {
-        //        register_post_type('plugin_one_product',
-        //            array(
-        //                'labels'=> array(
-        //                    'name'=> 'One Products',
-        //                    'singular_name'=> 'One Products',
-        //                ),
-        //                'public' => true,
-        //                'has_archive' => true,
-        //            )
-        //        );
-    }
 
     public function setSubPages()
     {
@@ -90,98 +70,13 @@ class TaxonomyManagerController extends BaseController
                 'page_title' => 'Taxonomy',
                 'capability' => 'manage_options',
                 'menu_slug' => 'ninja_plugin_one#/taxonomy_manager',
-                'callback' =>  array( $this->callbacks, 'adminTaxonomy' ),
+                //load callback object and pass the call back function if needed
+                'callback' =>  '',
 
             )
         );
     }
 
-    public function setSettings()
-    {
-        $args = array(
-            array(
-                'option_group' => 'ninja_plugin_one_tax_settings',
-                'option_name' => 'ninja_plugin_one_tax_option',
-                'callback' => ''
-            )
-        );
-
-        $this->settings->setSettings( $args );
-    }
-
-    public function setSections()
-    {
-        $args = array(
-            array(
-                'id' => 'ninja_plugin_one_tax_index',
-                'title' => 'Taxonomies Manager',
-                'callback' => array( $this->tax_callbacks, 'sectionManager' ),
-                'page' => 'ninja_plugin_one_taxonomy'
-            )
-        );
-
-        $this->settings->setSections( $args );
-    }
-
-    public function setFields()
-    {
-        $args = array(
-            array(
-                'id' => 'taxonomy',
-                'title' => 'Custom Taxonomy ID',
-                'callback' => array($this->tax_callbacks, 'textField'),
-                'page' => 'ninja_plugin_one_taxonomy',
-                'section' => 'ninja_plugin_one_tax_index',
-                'args' => array(
-                    'option_name' => 'ninja_plugin_one_tax_option',
-                    'label_for' => 'taxonomy',
-                    'placeholder' => 'eg. genre',
-                    'array' => 'taxonomy'
-                )
-            ),
-            array(
-                'id' => 'singular_name',
-                'title' => 'Singular Name',
-                'callback' => array( $this->tax_callbacks, 'textField' ),
-                'page' => 'ninja_plugin_one_taxonomy',
-                'section' => 'ninja_plugin_one_tax_index',
-                'args' => array(
-                    'option_name' => 'ninja_plugin_one_tax_option',
-                    'label_for' => 'singular_name',
-                    'placeholder' => 'eg. Genre',
-                    'array' => 'taxonomy'
-                )
-            ),
-            array(
-                'id' => 'hierarchical',
-                'title' => 'Hierarchical',
-                'callback' => array( $this->tax_callbacks, 'checkboxField' ),
-                'page' => 'ninja_plugin_one_taxonomy',
-                'section' => 'ninja_plugin_one_tax_index',
-                'args' => array(
-                    'option_name' => 'ninja_plugin_one_tax_option',
-                    'label_for' => 'hierarchical',
-                    'class' => 'ui-toggle',
-                    'array' => 'taxonomy'
-                )
-            ),  
-            array(
-				'id' => 'objects',
-				'title' => 'Post Types',
-				'callback' => array( $this->tax_callbacks, 'checkboxPostTypesField' ),
-				'page' => 'ninja_plugin_one_taxonomy',
-				'section' => 'ninja_plugin_one_tax_index',
-				'args' => array(
-					'option_name' => 'ninja_plugin_one_tax_option',
-					'label_for' => 'objects',
-					'class' => 'ui-toggle',
-					'array' => 'taxonomy'
-				)
-			)
-        );
-
-        $this->settings->setFields( $args );
-    }
 
    
     public function storeCustomTaxonomies()
@@ -219,13 +114,14 @@ class TaxonomyManagerController extends BaseController
         // register the taxonomy
     }
 
+    /**
+     * Register custom taxonomies from taxonomies array
+     */
     public function registerCustomTaxonomy()
     {
         foreach ($this->taxonomies as $taxonomy) {
            
             $objects = isset($taxonomy['objects']) ? array_keys($taxonomy['objects']) : null ;
-         
-
             register_taxonomy( $taxonomy['rewrite']['slug'],  $objects , $taxonomy );
         }
     }

@@ -35,7 +35,6 @@ class Render extends BaseController
         $data = $this->getFrontEndSetting($id);
         $this->enque();
 
-
         $args =  array(
             'post_type' => $data['post_type'],
             'cat' => $data['category_id'],
@@ -81,7 +80,6 @@ class Render extends BaseController
         $display_class =  ($view == 'grid') ? '':'display-grid';
         $color =  !empty($color) ? $color:'skyblue';
         $limit = $basic_settings->limit;
-
 
         $args = array(
             'post_type' => $post_type,

@@ -18,37 +18,19 @@ use PluginRunOne\Api\Callbacks\AdminCallbacks;
 class CustomPostTypeController extends BaseController
 {
     public $settings;
-
-    public $callbacks;
-
-    public $cpt_callbacks;
-
     public $subpages = array();
-
     public $custom_post_types = array();
 
     public function register()
     {
 
-
         if ( $this->featureActivated( 'cpt_manager' )== 'false'  ) {
             return;
-
         }
-
         $this->settings = new SettingsApi();
-
-        $this->callbacks = new AdminCallbacks();
-
-        $this->cpt_callbacks = new CptCallbacks();
-
         $this->setSubpages();
 
-        $this->setSettings();
 
-        $this->setSections();
-
-        $this->setFields();
 
         $this->settings->addSubPages( $this->subpages )->register();
 
@@ -81,105 +63,11 @@ class CustomPostTypeController extends BaseController
                 'menu_title' => 'CPT Manager',
                 'capability' => 'manage_options',
                 'menu_slug' => 'ninja_plugin_one#/cpt_manager',
-                'callback' => array( $this->callbacks, 'adminCpt' )
+                'callback' => '' //for php function on click Ex : load admin fields file
             )
         );
     }
 
-    public function setSettings()
-    {
-        $args = array(
-            array(
-                'option_group' => 'ninja_plugin_one_cpt_settings',
-                'option_name' => 'ninja_plugin_one_cpt_option',
-                'callback' =>''
-            )
-        );
-
-        $this->settings->setSettings( $args );
-    }
-
-    public function setSections()
-    {
-        $args = array(
-            array(
-                'id' => 'ninja_plugin_one_cpt_index',
-                'title' => 'Custom Post Type Manager',
-                'callback' => array( $this->cpt_callbacks, 'cptSectionManager' ),
-                'page' => 'ninja_plugin_one_cpt'
-            )
-        );
-
-        $this->settings->setSections( $args );
-    }
-
-    public function setFields()
-    {
-        $args = array(
-            array(
-                'id' => 'post_type',
-                'title' => 'Custom Post Type ID',
-                'callback' => array( $this->cpt_callbacks, 'textField' ),
-                'page' => 'ninja_plugin_one_cpt',
-                'section' => 'ninja_plugin_one_cpt_index',
-                'args' => array(
-                    'option_name' => 'ninja_plugin_one_cpt_option', // option name from setting
-                    'label_for' => 'post_type',
-                    'placeholder' => 'eg. product'
-                )
-            ),
-            array(
-                'id' => 'singular_name',
-                'title' => 'Singular Name',
-                'callback' => array( $this->cpt_callbacks, 'textField' ),
-                'page' => 'ninja_plugin_one_cpt',
-                'section' => 'ninja_plugin_one_cpt_index',
-                'args' => array(
-                    'option_name' => 'ninja_plugin_one_cpt_option',// option name from setting
-                    'label_for' => 'singular_name',
-                    'placeholder' => 'eg. Product'
-                )
-            ),
-            array(
-                'id' => 'plural_name',
-                'title' => 'Plural Name',
-                'callback' => array( $this->cpt_callbacks, 'textField' ),
-                'page' => 'ninja_plugin_one_cpt',
-                'section' => 'ninja_plugin_one_cpt_index',
-                'args' => array(
-                    'option_name' => 'ninja_plugin_one_cpt_option',// option name from setting
-                    'label_for' => 'plural_name',
-                    'placeholder' => 'eg. Products'
-                )
-            ),
-            array(
-                'id' => 'public',
-                'title' => 'Public',
-                'callback' => array( $this->cpt_callbacks, 'checkboxField' ),
-                'page' => 'ninja_plugin_one_cpt',
-                'section' => 'ninja_plugin_one_cpt_index',
-                'args' => array(
-                    'option_name' => 'ninja_plugin_one_cpt_option',// option name from setting
-                    'label_for' => 'public',
-                    'class' => 'ui-toggle'
-                )
-            ),
-            array(
-                'id' => 'has_archive',
-                'title' => 'Archive',
-                'callback' => array( $this->cpt_callbacks, 'checkboxField' ),
-                'page' => 'ninja_plugin_one_cpt',
-                'section' => 'ninja_plugin_one_cpt_index',
-                'args' => array(
-                    'option_name' => 'ninja_plugin_one_cpt_option',// option name from setting
-                    'label_for' => 'has_archive',
-                    'class' => 'ui-toggle'
-                )
-            )
-        );
-
-        $this->settings->setFields( $args );
-    }
 
     public function storeCustomPostTypes()
     {
@@ -299,26 +187,19 @@ class CustomPostTypeController extends BaseController
     public function exportCpt($key)
     {
 
-
         $option = get_option( 'ninja_plugin_one_cpt_option' );
 
         if(array_key_exists($key,$option)){
 
-
              ob_clean();
              ob_start();
-            //      card html
+            //    cpt export code
             require_once("$this->plugin_path/templates/cpt-export.php");
-
             $content = ob_get_clean();
-
             echo $content;
-
+            exit;
         }
 
-        exit;
-
     }
-
 
 }

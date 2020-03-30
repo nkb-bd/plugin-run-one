@@ -6,7 +6,7 @@
  */
 
 
-namespace PluginRunOne\Base\CardCreator;
+namespace PluginRunOne\Base;
 
 use PluginRunOne\Base\BaseController;
 

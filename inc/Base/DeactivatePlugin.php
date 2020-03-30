@@ -2,7 +2,8 @@
 
 
 /**
- * @package plugin run one 
+ * @package plugin run one
+ * Deactivation
  */
 
 namespace PluginRunOne\Base;
@@ -12,6 +13,6 @@ class DeactivatePlugin
 	
 	public static function deactivate()
 	{
-		flush_rewrite_rules();
+            // deactivation functions
 	}
 }

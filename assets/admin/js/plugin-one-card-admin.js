@@ -2257,6 +2257,8 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _CptForm__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CptForm */ "./src/js/components/cpt/CptForm.vue");
+/* harmony import */ var code_prettify__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! code-prettify */ "./node_modules/code-prettify/src/prettify.js");
+/* harmony import */ var code_prettify__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(code_prettify__WEBPACK_IMPORTED_MODULE_1__);
 //
 //
 //
@@ -2289,6 +2291,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'CptExport',
@@ -2309,7 +2313,6 @@ __webpack_require__.r(__webpack_exports__);
           route: "cpt_export",
           id: this.cpt_key
         }).then(function (response) {
-          console.log(response);
           _this.html_data = response;
         });
         this.dialogVisible = true;
@@ -2326,6 +2329,9 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mounted: function mounted() {
+    this.$nextTick(function () {
+      code_prettify__WEBPACK_IMPORTED_MODULE_1___default.a.prettyPrint();
+    });
     this.getData();
   },
   components: {}
@@ -84135,11 +84141,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _elements__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./elements */ "./src/js/elements.js");
 /* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 /* harmony import */ var _card_ajax_connector__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./card-ajax-connector */ "./src/js/card-ajax-connector.js");
-/* harmony import */ var code_prettify__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! code-prettify */ "./node_modules/code-prettify/src/prettify.js");
-/* harmony import */ var code_prettify__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(code_prettify__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _AdminApp__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./AdminApp */ "./src/js/AdminApp.vue");
-/* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./routes */ "./src/js/routes.js");
-
+/* harmony import */ var _AdminApp__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./AdminApp */ "./src/js/AdminApp.vue");
+/* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./routes */ "./src/js/routes.js");
 
 
 
@@ -84157,7 +84160,7 @@ window.PluginOneCardClass.Vue.mixin({
 _elements__WEBPACK_IMPORTED_MODULE_0__["default"].use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
 
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
-  routes: _routes__WEBPACK_IMPORTED_MODULE_5__["routes"],
+  routes: _routes__WEBPACK_IMPORTED_MODULE_4__["routes"],
   linkActiveClass: 'active'
 });
 
@@ -84165,7 +84168,7 @@ if (document.getElementById("onecardapp")) {
   new _elements__WEBPACK_IMPORTED_MODULE_0__["default"]({
     el: '#onecardapp',
     render: function render(h) {
-      return h(_AdminApp__WEBPACK_IMPORTED_MODULE_4__["default"]);
+      return h(_AdminApp__WEBPACK_IMPORTED_MODULE_3__["default"]);
     },
     router: router
   });

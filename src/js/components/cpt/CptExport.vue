@@ -23,6 +23,7 @@
 
         <div >
             <h4>Select a post type</h4>
+
             <pre class="prettyprint">
             {{html_data}}
             </pre>
@@ -32,6 +33,8 @@
 </template>
 <script>
     import CptForm from "./CptForm";
+    import prettyPrint from 'code-prettify';
+
 
     export default {
         name: 'CptExport',
@@ -54,8 +57,8 @@
 
                     }).then((response)=>{
 
-                            console.log(response);
                             this.html_data = response;
+
 
                         }
                     )
@@ -78,6 +81,9 @@
 
         },
         mounted() {
+            this.$nextTick(function() {
+                prettyPrint.prettyPrint();
+            });
             this.getData();
         },
         components: {

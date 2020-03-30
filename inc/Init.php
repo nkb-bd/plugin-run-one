@@ -32,7 +32,6 @@ final class Init
 	* @return
     */
 
-
 	public static function  register_services(){
 
 		foreach ( self::get_services() as $class) {
@@ -45,19 +44,17 @@ final class Init
 
 	}
 
-
 	/*
-	* Initialize the class
+	* Initialize the class loaded by register services
 	* @params class $class class from the services array
 	* @return class instance new instance of the class
     */
 
 	private static function instantiate( $class){
 
-
-		$service = new $class();
-
-		return $service;
+	    if (class_exists($class)){
+            return  new $class();
+        }
 
 	}
 

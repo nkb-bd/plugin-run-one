@@ -14,17 +14,19 @@ class AdminCallbacks extends BaseController
 {
 	public function adminDashboard()
 	{
+        do_action($this->plugin_prefix.'/render_admin_app');
+
         echo '<div id="onecardapp"></div>';
 	}
 
-	public function adminCpt()
+	public function renderAdminCpt()
 	{
-		 return require_once("$this->plugin_path/templates/cpt.php");
+        do_action($this->plugin_prefix.'/render_admin_cpt');
 	}
 
-	public function customTaxonomies()
+	public function renderAdminTaxonomy()
 	{
-		 return require_once("$this->plugin_path/templates/custom_taxonomies.php");
+        do_action($this->plugin_prefix.'/renderAdminTaxonomy');
 	}
 
 
@@ -35,29 +37,6 @@ class AdminCallbacks extends BaseController
         echo '<input type="text" class="regular-text" name="text_example" value="'.$value.'" placeholder="Wrtie here.. " >';
 	}
 
-//
-
-
-
-//
-//    public function pluginOneOptionsGroup( $input)
-//    {
-//        return $input;
-//    }
-//
-
-    public function adminTaxonomy()
-    {
-        return require_once("$this->plugin_path/templates/custom_taxonomies.php");
-
-    }
-
-    public function pluginOneFullName()
-    {
-        $value = esc_attr( get_option( 'full_name' ) );
-
-        echo '<input type="text" class="regular-text" name="full_name" value="' . $value . '" placeholder=" Full Name" >';
-    }
 
 
 }

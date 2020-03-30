@@ -3,7 +3,6 @@ import Router from 'vue-router';
 
 
 import PluginRunOneCard from './card-ajax-connector';
-import 'code-prettify';
 
 
 window.PluginOneCardClass = new PluginRunOneCard();

@@ -7,9 +7,6 @@
         $cpt_data = $option[$key];
 
         ?>
-
-
-
 // custom post type :<?php echo $cpt_data['post_type']?>
 // Register Custom Post Type
 function custom_post_type() {
@@ -67,8 +64,6 @@ function custom_post_type() {
 }
 add_action( 'init', 'custom_post_type', 0 );
 
-        <?php
 
-     ?>
 
 

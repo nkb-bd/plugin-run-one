@@ -16,13 +16,9 @@ class SettingsApi
 
 
     public $admin_pages  = array();
-
     public $admin_subpages  = array();
-
     public $settings = array();
-
     public $sections = array();
-
     public $fields = array();
 
     /**
@@ -106,7 +102,14 @@ class SettingsApi
     public function addAdminMenu()
 	{
         foreach ( $this->admin_pages as $page ) {
-            add_menu_page( $page['page_title'], $page['menu_title'], $page['capability'], $page['menu_slug'], $page['callback'], $page['icon_url'], $page['position'] );
+            add_menu_page(
+                $page['page_title'],
+                $page['menu_title'],
+                $page['capability'],
+                $page['menu_slug'],
+                $page['callback'],
+                $page['icon_url'],
+                $page['position'] );
         }
 
         foreach ( $this->admin_subpages as $page ) {
