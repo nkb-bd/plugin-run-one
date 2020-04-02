@@ -5,8 +5,6 @@
             <div slot="header" class="clearfix">
 
 
-
-
                 <el-table :data="tableData" style="width: 100%">
 
 
@@ -28,6 +26,7 @@
 
 
                             <template slot-scope="scope">
+
                                 <el-button
                                         size="mini"
                                         @click="handleEdit(scope.row.id, scope.row)">Edit</el-button>
@@ -49,12 +48,23 @@
                             </template>
                         </el-table-column>
 
-                        <el-table-column label="Created"   >
+                        <el-table-column label="Preview"   >
 
 
                             <template slot-scope="scope">
 
-                                <span style="margin-left: 10px">{{ scope.row.created_at }}</span>
+
+                                <el-button
+                                        size="mini"
+                                        type="success"
+                                        @click="preview( scope.row.id)"
+                                >Preview
+
+                                </el-button>
+                                <br>
+                                <span style="margin-left: 10px;font-size: 10px;">{{ scope.row.created_at }}</span>
+
+
                             </template>
                         </el-table-column>
                     </el-table>
@@ -102,8 +112,8 @@
                 this.dialogTableVisible = true;
 
             },
-            handleDelete(index, row) {
-
+            preview(index) {
+                    window.open(window.pluginRunOneCardAdmin.siteurl+'/?plugin_run_one_card_card_preview='+index,'_blank')
             }
         },
         computed : {

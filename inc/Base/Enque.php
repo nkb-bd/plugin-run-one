@@ -42,6 +42,7 @@ class Enque extends BaseController
         $adminVars = array(
             'assets_url'          => $this->plugin_path . 'admin/',
             'ajaxurl'             => admin_url('admin-ajax.php'),
+            'siteurl'             => site_url(),
             'user_id'             => $user_id,
         );
         wp_localize_script('plugin-run-one-card-admin', 'pluginRunOneCardAdmin', $adminVars);

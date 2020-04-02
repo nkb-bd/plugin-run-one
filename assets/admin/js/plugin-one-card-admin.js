@@ -1751,22 +1751,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'AdminApp',
+  name: "AdminApp",
   data: function data() {
     return {
       topMenus: [],
       visibleWarning: false,
-      modules: ''
+      modules: ""
     };
   },
   methods: {
@@ -1786,8 +1777,8 @@ __webpack_require__.r(__webpack_exports__);
         var modules = Object.values(response.data.data);
         _this.topMenus = modules;
         var test = {
-          route: 'dashboard',
-          title: 'Dashboard '
+          route: "dashboard",
+          title: "Dashboard "
         };
 
         _this.topMenus.unshift(test);
@@ -1806,13 +1797,13 @@ __webpack_require__.r(__webpack_exports__);
       this.$router.beforeEach(function (to, from, next) {
         var name = to.name; // check if modules saved in db
 
-        if (_this2.modules[name] === 'true' || name == 'dashboard') {
+        if (_this2.modules[name] === "true" || name == "dashboard") {
           next();
           _this2.visibleWarning = false;
         } else {
           _this2.visibleWarning = true;
           next({
-            name: 'dashboard'
+            name: "dashboard"
           });
         }
       });
@@ -1822,8 +1813,8 @@ __webpack_require__.r(__webpack_exports__);
     this.setTopmenu();
     this.getModules();
     var test = {
-      route: 'dashboard',
-      title: 'Dashboard '
+      route: "dashboard",
+      title: "Dashboard "
     };
     this.topMenus.unshift(test); // this.$router.options.routes.forEach(route => {
     //
@@ -2204,6 +2195,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 // import AddCard from './../AddCard';
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2234,7 +2235,9 @@ __webpack_require__.r(__webpack_exports__);
       this.editId = index;
       this.dialogTableVisible = true;
     },
-    handleDelete: function handleDelete(index, row) {}
+    preview: function preview(index) {
+      window.open(window.pluginRunOneCardAdmin.siteurl + '/?plugin_run_one_card_card_preview=' + index, '_blank');
+    }
   },
   computed: {},
   mounted: function mounted() {
@@ -6998,7 +7001,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, "\n.plugin_run_one_card{\n    margin-left: -20px;\n}\n.ninja-tab-active{\n    background-color: #3a8ee6;\n    color : #ffffff;\n}\n.cc-inline-list li{\n    float:left;\n    margin:5px;\n}\n.text-center{\n    margin: 0 auto;\n    text-align:center;\n}\n.cc-main-container .el-dialog__body {\n   padding:20px 20px;\n}\n.cc-main-container .pull-right{\n    float: right;\n}\npre.prettyprint {\n\n    margin-left: 0;\n}\n.cc-main-container .el-tabs--left .el-tabs__header.is-left{\n    min-width: 135px!important;\n}\n", ""]);
+exports.push([module.i, "\n.plugin_run_one_card {\n  margin-left: -20px;\n}\n.ninja-tab-active {\n  background-color: #3a8ee6;\n  color: #ffffff;\n}\n.cc-inline-list li {\n  float: left;\n  margin: 5px;\n}\n.text-center {\n  margin: 0 auto;\n  text-align: center;\n}\n.cc-main-container .el-dialog__body {\n  padding: 20px 20px;\n}\n.cc-main-container .pull-right {\n  float: right;\n}\npre.prettyprint {\n  margin-left: 0;\n}\n.cc-main-container .el-tabs--left .el-tabs__header.is-left {\n  min-width: 135px !important;\n}\n", ""]);
 
 // exports
 
@@ -67084,9 +67087,7 @@ var render = function() {
                   },
                   [
                     _vm._v(
-                      "\n\n                " +
-                        _vm._s(menuItem.title) +
-                        "\n\n             "
+                      "\n          " + _vm._s(menuItem.title) + "\n        "
                     )
                   ]
                 )
@@ -67579,15 +67580,35 @@ var render = function() {
                 }),
                 _vm._v(" "),
                 _c("el-table-column", {
-                  attrs: { label: "Created" },
+                  attrs: { label: "Preview" },
                   scopedSlots: _vm._u([
                     {
                       key: "default",
                       fn: function(scope) {
                         return [
                           _c(
+                            "el-button",
+                            {
+                              attrs: { size: "mini", type: "success" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.preview(scope.row.id)
+                                }
+                              }
+                            },
+                            [_vm._v("Preview\n\n                            ")]
+                          ),
+                          _vm._v(" "),
+                          _c("br"),
+                          _vm._v(" "),
+                          _c(
                             "span",
-                            { staticStyle: { "margin-left": "10px" } },
+                            {
+                              staticStyle: {
+                                "margin-left": "10px",
+                                "font-size": "10px"
+                              }
+                            },
                             [_vm._v(_vm._s(scope.row.created_at))]
                           )
                         ]

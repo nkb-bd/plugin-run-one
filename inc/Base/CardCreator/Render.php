@@ -66,6 +66,10 @@ class Render extends BaseController
 
         $rednderData=  $data->getSingleCardData($id);
 
+        if(!$rednderData){
+            return false;
+        }
+
         $basic_settings =  $rednderData->basicSettings;
         $basic_settings = json_decode($basic_settings);
 
@@ -73,9 +77,10 @@ class Render extends BaseController
         $post_type = $basic_settings->post_type;
         $category_id = $basic_settings->category;
         $featured_img = $basic_settings->cardImage;
-        $color = $basic_settings->color;
+        $color = (isset($basic_settings->color))?$basic_settings->color :'';
         $limit = $basic_settings->limit;
-        $view = $basic_settings->view;
+        $view = (isset($basic_settings->view))?$basic_settings->view :'';
+
 
         $display_class =  ($view == 'grid') ? '':'display-grid';
         $color =  !empty($color) ? $color:'skyblue';

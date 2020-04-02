@@ -49,5 +49,9 @@
     <?php
     endwhile;
     wp_reset_postdata();
+    if($i==0){
+        echo 'No Post Found in this post type! ';
+    }
     ?>
+
 </div>

@@ -12,6 +12,7 @@ namespace PluginRunOne\Base;
 use \PluginRunOne\Api\SettingsApi;
 use \PluginRunOne\Base\BaseController;
 use PluginRunOne\Api\Callbacks\CardManagerCallbacks;
+use PluginRunOne\Base\CardCreator\CardPreview;
 
 
 class CardCreatorController extends BaseController
@@ -52,6 +53,10 @@ class CardCreatorController extends BaseController
         }
 
         $this->registerShortcode();
+
+        $setPreviewPage = new CardPreview();
+        $setPreviewPage->register();
+
     }
 
     public function setSubpages()

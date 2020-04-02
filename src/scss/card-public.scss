@@ -26,6 +26,9 @@
   -moz-transform: translate3d(0, 0, 0);
 }
 
+.preview-plugin-run-one-card-container{
+  margin-top: 10rem;
+}
 @media (min-width: 900px) {
 
   .plugin-one-card {
@@ -85,6 +88,12 @@
   font-size: .7rem;
   margin-bottom: .5rem;
   color: #CCC;
+}
+.plugin-one-card-mt-20{
+  margin-top:20px ;
+}
+.plugin-one-card-mb-20{
+  margin-bottom:20px ;
 }
 
 .plugin-one-card__details-wrapper {
