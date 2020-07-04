@@ -6,17 +6,17 @@
  */
 
 
-namespace PluginRunOne\Base;
+namespace PluginRunTwo\Base;
 
-use PluginRunOne\Base\BaseController;
+use PluginRunTwo\Base\BaseController;
 
 class AjaxHandler extends  BaseController
 {
     public $cardDataProvider;
     public function register()
     {
-        add_action('wp_ajax_plugin_run_one_card', array($this, 'handleAjax'));
-        $this->cardDataProvider = new \PluginRunOne\Base\CardCreator\CardDataHandler;
+        add_action('wp_ajax_plugin_run_two_card', array($this, 'handleAjax'));
+        $this->cardDataProvider = new \PluginRunTwo\Base\GridCreator\CardDataHandler;
 
     }
 
@@ -46,7 +46,7 @@ class AjaxHandler extends  BaseController
 
         if (isset($validRoutes[$route])) {
 
-            do_action('pluginrunone/doing_ajax_events_' . $route);
+            do_action('PluginRunTwo/doing_ajax_events_' . $route);
 
             return $this->{$validRoutes[$route]}();
         }
@@ -148,7 +148,7 @@ class AjaxHandler extends  BaseController
     public function cptExport()
     {
         $key = $_REQUEST['id'];
-        $data = new \PluginRunOne\Base\CustomPostTypeController();
+        $data = new \PluginRunTwo\Base\CustomPostTypeController();
         $rednderData=  $data->exportCpt($key);
     }
     public function getCptDataById()
@@ -235,14 +235,14 @@ class AjaxHandler extends  BaseController
     {
         $id = $_REQUEST['card_id'];
 
-        $data =  new \PluginRunOne\Base\CardCreator\CardDataHandler;
+        $data =  new \PluginRunTwo\Base\CardCreator\CardDataHandler;
         $rednderData=  $data->getSingleCardData($id);
 
         wp_send_json_success(array(
             'response' => 'success',
             'data' => $rednderData
         ), 200);
-        
+
     }
     public function getTaxonomies()
     {
@@ -253,9 +253,9 @@ class AjaxHandler extends  BaseController
             'data'=>$this->cardDataProvider->getPostTaxonomies($post),
             'response' => 'success',
         ), 200);
-        
+
     }
-    
+
     public function updateCard()
     {
         $posdtData = $_REQUEST['data'];

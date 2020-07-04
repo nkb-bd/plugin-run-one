@@ -6,7 +6,7 @@ defined('ABSPATH') or die;
 
 
 spl_autoload_register(function ($class) {
-    $namespace = 'PluginRunOne';
+    $namespace = 'PluginRunTwo';
     if (substr($class, 0, strlen($namespace)) !== $namespace) {
         return;
     }

@@ -6,11 +6,11 @@
  * Deactivation
  */
 
-namespace PluginRunOne\Base;
+namespace PluginRunTwo\Base;
 
-class DeactivatePlugin 
+class DeactivatePlugin
 {
-	
+
 	public static function deactivate()
 	{
             // deactivation functions

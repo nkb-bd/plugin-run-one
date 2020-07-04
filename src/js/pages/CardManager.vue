@@ -7,7 +7,9 @@
                 <h2>Manage Cards created from Post Types</h2>
 
                 <el-button class="pull-right" round @click="cardFormVisible = true" type="primary">Add New</el-button>
+                <el-button class="pull-right" round  @click="formModalVisible = true" type="primary">Add New</el-button>
 
+                <router-link to="/new_card">Add new 2</router-link>
                 <el-dialog
 
                         :visible.sync="cardFormVisible"
@@ -17,6 +19,41 @@
                     <CardForm />
 
                 </el-dialog>
+                <el-dialog
+
+                        :visible.sync="formModalVisible"
+                        title="New Grid "
+                        width="35%"
+                        center>
+
+
+                           <div>
+                               <el-form>
+                               <el-form-item>
+
+                                   <el-select style="width:100%;background:#fff;"  v-model="sourceName" placeholder="Grid Source">
+                                       <el-option
+                                               v-for="item in gridSource"
+                                               :key="item.value"
+                                               :label="item.label"
+                                               :value="item.value">
+                                       </el-option>
+                                   </el-select>
+                               </el-form-item>
+
+
+
+
+                               <el-form-item  style="text-align:center;">
+                                   <el-button    @click="" type="primary">Next</el-button>
+                               </el-form-item>
+
+                               </el-form>
+
+                           </div>
+
+                </el-dialog>
+
 
             </div>
 
@@ -43,7 +80,23 @@
         name: 'Dashboard',
         data() {
             return {
+                gridSource:[
+                    {
+                        label:'Post',
+                        value:'post'
+                    },
+                    {
+                        label:'Fluent Form',
+                        value:'fluent-from'
+                    },
+                    {
+                        label:'Ninja Table',
+                        value:'ninja-table'
+                    }
+                ],
+                sourceName:'',
                 cardFormVisible: false,
+                formModalVisible: false,
                 activeName: 'first',
                 cpt:false,
                 taxonomy:false,
@@ -99,6 +152,8 @@
     .cc-admin-input{
        padding: 10px;
     }
-
+    .el-input--suffix .el-input__inner{
+        background-color:transparent;
+    }
 </style>
 

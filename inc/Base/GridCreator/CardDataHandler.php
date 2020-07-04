@@ -2,11 +2,11 @@
 
 
 /**
- * @package pluginRunOne
+ * @package PluginRunTwo
  * Card data handler
  */
 
-namespace PluginRunOne\Base\CardCreator;
+namespace PluginRunTwo\Base\GridCreator;
 
 
 class CardDataHandler

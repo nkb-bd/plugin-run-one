@@ -3,7 +3,7 @@ import 'code-prettify';
 
 window.addEventListener("load", function() {
 
-    PR.prettyPrint();
+
 
     //  tabs
     var tabs = document.querySelectorAll("ul.nav-tabs > li");

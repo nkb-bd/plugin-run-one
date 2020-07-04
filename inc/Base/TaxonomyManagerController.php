@@ -2,18 +2,18 @@
 
 
 /**
- * @package pluginRunOne
+ * @package PluginRunTwo
  * Taxonomy manager
  */
 
-namespace PluginRunOne\Base;
+namespace PluginRunTwo\Base;
 
 
-use PluginRunOne\Api\Callbacks\TaxonomyCallbacks;
-use \PluginRunOne\Base\BaseController;
-use \PluginRunOne\Api\SettingsApi;
-use PluginRunOne\Api\Callbacks\AdminCallbacks;
-use PluginRunOne\Api\Callbacks\CptCallbacks;
+use PluginRunTwo\Api\Callbacks\TaxonomyCallbacks;
+use \PluginRunTwo\Base\BaseController;
+use \PluginRunTwo\Api\SettingsApi;
+use PluginRunTwo\Api\Callbacks\AdminCallbacks;
+use PluginRunTwo\Api\Callbacks\CptCallbacks;
 
 
 class TaxonomyManagerController extends BaseController
@@ -50,7 +50,7 @@ class TaxonomyManagerController extends BaseController
         // using method chaining creating sub pages
         $this->settings->addSubPages( $this->subpages )->register();
 
-        
+
         $this->storeCustomTaxonomies();
 
         if ( ! empty( $this->taxonomies ) ) {
@@ -69,7 +69,7 @@ class TaxonomyManagerController extends BaseController
                 'menu_title' => 'Taxonomy Manager',
                 'page_title' => 'Taxonomy',
                 'capability' => 'manage_options',
-                'menu_slug' => 'ninja_plugin_one#/taxonomy_manager',
+                'menu_slug' => 'admin.php?page=ninja_plugin_one#/taxonomy_manager',
                 //load callback object and pass the call back function if needed
                 'callback' =>  '',
 
@@ -78,7 +78,7 @@ class TaxonomyManagerController extends BaseController
     }
 
 
-   
+
     public function storeCustomTaxonomies()
     {
         // get the taxonomies array
@@ -99,7 +99,7 @@ class TaxonomyManagerController extends BaseController
                 'new_item_name'     => 'New ' . $option['singular_name'] . ' Name',
                 'menu_name'         => $option['singular_name'],
             );
-         
+
             $this->taxonomies[] = array(
                 'hierarchical'      => isset($option['hierarchical']) ? true : false,
                 'labels'            => $labels,
@@ -107,12 +107,15 @@ class TaxonomyManagerController extends BaseController
                 'show_admin_column' => true,
                 'query_var'         => true,
                 'rewrite'           => array( 'slug' => $option['taxonomy'] ),
-                'objects'           => isset($option['objects']) ? $option['objects'] : null 
+                'objects'           => isset($option['objects']) ? $option['objects'] : null
             );
 
         }
         // register the taxonomy
     }
+
+
+
 
     /**
      * Register custom taxonomies from taxonomies array
@@ -120,7 +123,7 @@ class TaxonomyManagerController extends BaseController
     public function registerCustomTaxonomy()
     {
         foreach ($this->taxonomies as $taxonomy) {
-           
+
             $objects = isset($taxonomy['objects']) ? array_keys($taxonomy['objects']) : null ;
             register_taxonomy( $taxonomy['rewrite']['slug'],  $objects , $taxonomy );
         }

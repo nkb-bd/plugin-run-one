@@ -1852,8 +1852,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var code_prettify__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(code_prettify__WEBPACK_IMPORTED_MODULE_0__);
 
 window.addEventListener("load", function () {
-  PR.prettyPrint(); //  tabs
-
+  //  tabs
   var tabs = document.querySelectorAll("ul.nav-tabs > li");
 
   for (var i = 0; i < tabs.length; i++) {
@@ -1904,9 +1903,9 @@ window.addEventListener("load", function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/nakib/Practice/wp_lab/wp-content/plugins/plugin-run-one/src/js/main.js */"./src/js/main.js");
-__webpack_require__(/*! /Users/nakib/Practice/wp_lab/wp-content/plugins/plugin-run-one/src/scss/admin/app.scss */"./src/scss/admin/app.scss");
-module.exports = __webpack_require__(/*! /Users/nakib/Practice/wp_lab/wp-content/plugins/plugin-run-one/src/scss/card-public.scss */"./src/scss/card-public.scss");
+__webpack_require__(/*! /Users/nakib/Practice/wp_lab/wp-content/plugins/plugin-run-two/src/js/main.js */"./src/js/main.js");
+__webpack_require__(/*! /Users/nakib/Practice/wp_lab/wp-content/plugins/plugin-run-two/src/scss/admin/app.scss */"./src/scss/admin/app.scss");
+module.exports = __webpack_require__(/*! /Users/nakib/Practice/wp_lab/wp-content/plugins/plugin-run-two/src/scss/card-public.scss */"./src/scss/card-public.scss");
 
 
 /***/ })

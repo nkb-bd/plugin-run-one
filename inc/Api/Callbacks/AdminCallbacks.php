@@ -2,12 +2,12 @@
 
 
 /**
- * @package pluginRunOne
+ * @package PluginRunTwo
  */
 
-namespace PluginRunOne\Api\Callbacks;
+namespace PluginRunTwo\Api\Callbacks;
 
-use \PluginRunOne\Base\BaseController;
+use \PluginRunTwo\Base\BaseController;
 
 
 class AdminCallbacks extends BaseController

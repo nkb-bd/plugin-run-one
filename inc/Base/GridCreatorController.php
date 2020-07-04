@@ -2,20 +2,20 @@
 
 
 /**
- * @package pluginRunOne
+ * @package PluginRunTwo
  * Custom Post Type
  */
 
-namespace PluginRunOne\Base;
+namespace PluginRunTwo\Base;
 
 
-use \PluginRunOne\Api\SettingsApi;
-use \PluginRunOne\Base\BaseController;
-use PluginRunOne\Api\Callbacks\CardManagerCallbacks;
-use PluginRunOne\Base\CardCreator\CardPreview;
+use \PluginRunTwo\Api\SettingsApi;
+use \PluginRunTwo\Base\BaseController;
+use PluginRunTwo\Api\Callbacks\CardManagerCallbacks;
+use PluginRunTwo\Base\GridCreator\CardPreview;
 
 
-class CardCreatorController extends BaseController
+class GridCreatorController extends BaseController
 {
     public $settings;
 
@@ -31,7 +31,9 @@ class CardCreatorController extends BaseController
         if (  $this->featureActivated( 'card_manager' )=='false' ) {
             return;
         }
-
+        // fluent form data
+        $ff = new \PluginRunTwo\Base\GridCreator\FluentFormProvider();
+        $ff->register();
         $this->settings = new SettingsApi();
 
         $this->callbacks = new CardManagerCallbacks();
@@ -79,7 +81,7 @@ class CardCreatorController extends BaseController
     {
 
             // Register the shortcode
-            add_shortcode('pluginrunone_card', function ($args) {
+            add_shortcode('PluginRunTwo_card', function ($args) {
                 $args = shortcode_atts(array(
                     'id'               => '',
                 ), $args);
@@ -88,7 +90,7 @@ class CardCreatorController extends BaseController
                     return;
                 }
 
-                $render = new \PluginRunOne\Base\CardCreator\Render();
+                $render = new \PluginRunTwo\Base\CardCreator\Render();
                 return $render->renderShortcode($args['id']);
 
             });

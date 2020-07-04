@@ -2,10 +2,10 @@
 
 
 /**
- * @package pluginRunOne
+ * @package PluginRunTwo
  */
 
-namespace PluginRunOne;
+namespace PluginRunTwo;
 
 final class Init
 {
@@ -21,7 +21,7 @@ final class Init
             Base\CustomPostTypeController::class,
             Base\TaxonomyManagerController::class,
 			Base\SettingsLink::class,
-			Base\CardCreatorController::class
+			Base\GridCreatorController::class
 		];
 
 	}

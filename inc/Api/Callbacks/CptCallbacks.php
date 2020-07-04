@@ -2,10 +2,10 @@
 
 
 /**
- * @package pluginRunOne
+ * @package PluginRunTwo
  */
 
-namespace PluginRunOne\Api\Callbacks;
+namespace PluginRunTwo\Api\Callbacks;
 
 class CptCallbacks
 {

@@ -2,16 +2,15 @@
 
 
 /**
- * @package pluginRunOne
+ * @package PluginRunTwo
  */
 
-namespace PluginRunOne\Pages;
+namespace PluginRunTwo\Pages;
 
-
-use PluginRunOne\Api\SettingsApi;
-use PluginRunOne\Base\BaseController;
-use PluginRunOne\Api\Callbacks\AdminCallbacks;
-use PluginRunOne\Api\Callbacks\SanitizeCallbacksManager;
+use PluginRunTwo\Api\SettingsApi;
+use PluginRunTwo\Base\BaseController;
+use PluginRunTwo\Api\Callbacks\AdminCallbacks;
+use PluginRunTwo\Api\Callbacks\SanitizeCallbacksManager;
 
 class Dashboard extends BaseController
 {
@@ -38,8 +37,8 @@ class Dashboard extends BaseController
 		$this->pages = array(
 
 			array(
-				'page_title' => 'Plugin One',
-				'menu_title' => 'Plugin Run One ',
+				'page_title' => PLUGIN_RUN_TWO_MENU_NAME,
+				'menu_title' => PLUGIN_RUN_TWO_MENU_NAME,
 				'capability' => 'manage_options',
 				'menu_slug' => 'ninja_plugin_one',
 				'callback' => array( $this->callbacks, 'adminDashboard' ),
@@ -52,7 +51,7 @@ class Dashboard extends BaseController
 
     public function adminAjaxHandler()
     {
-        $adminAjax = new \PluginRunOne\Base\AjaxHandler;
+        $adminAjax = new \PluginRunTwo\Base\AjaxHandler;
         $adminAjax->register();
     }
 

@@ -5,7 +5,7 @@
  */
 
 
-namespace PluginRunOne\Base;
+namespace PluginRunTwo\Base;
 
 class BaseController
 {
@@ -23,7 +23,7 @@ class BaseController
 		$this->plugin_url = plugin_dir_url(dirname( __FILE__ ,2) );
 		$this->plugin = plugin_basename(dirname( __FILE__ ,3).'/plugin-run-one.php' );
 		$this->plugin_prefix = 'plugin_run_one';
-        $this->version = PLUGIN_RUN_ONE_VERSION;
+        $this->version = PLUGIN_RUN_TWO_VERSION;
         $this->database_version = '2';
 
         $this->base_setting_managers = array(

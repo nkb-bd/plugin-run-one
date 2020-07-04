@@ -2,13 +2,13 @@
 
 
 /**
- * @package pluginRunOne
+ * @package PluginRunTwo
  * Card creator shortcode render
  */
 
-namespace PluginRunOne\Base\CardCreator;
+namespace PluginRunTwo\Base\GridCreator;
 
-use \PluginRunOne\Base\BaseController;
+use \PluginRunTwo\Base\BaseController;
 
 
 class Render extends BaseController
@@ -62,7 +62,7 @@ class Render extends BaseController
 
     public function getFrontEndSetting($id)
     {
-        $data =  new \PluginRunOne\Base\CardCreator\CardDataHandler;
+        $data =  new \PluginRunTwo\Base\GridCreator\CardDataHandler;
 
         $rednderData=  $data->getSingleCardData($id);
 

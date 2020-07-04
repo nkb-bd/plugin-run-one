@@ -1,5 +1,5 @@
 <template>
-  <div class="plugin_run_one_card">
+  <div class="plugin_run_two_card">
     <el-menu class="el-menu-demo" mode="horizontal">
       <div class="nav">
         <ul class="cc-inline-list">
@@ -67,16 +67,16 @@ export default {
       });
       this.$router.beforeEach((to, from, next) => {
         let name = to.name;
-
+        next();
         // check if modules saved in db
 
-        if (this.modules[name] === "true" || name == "dashboard") {
-          next();
-          this.visibleWarning = false;
-        } else {
-          this.visibleWarning = true;
-          next({ name: "dashboard" });
-        }
+        // if (this.modules[name] === "true" || name == "dashboard") {
+        //   next();
+        //   this.visibleWarning = false;
+        // } else {
+        //   this.visibleWarning = true;
+        //   next({ name: "dashboard" });
+        // }
       });
     }
   },
@@ -98,7 +98,7 @@ export default {
 </script>
 
 <style>
-.plugin_run_one_card {
+.plugin_run_two_card {
   margin-left: -20px;
 }
 .ninja-tab-active {

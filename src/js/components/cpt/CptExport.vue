@@ -82,7 +82,7 @@
         },
         mounted() {
             this.$nextTick(function() {
-                prettyPrint.prettyPrint();
+                // prettyPrint.prettyPrint();
             });
             this.getData();
         },

@@ -2,10 +2,10 @@
 
 
 /**
- * @package pluginRunOne
+ * @package PluginRunTwo
  */
 
-namespace PluginRunOne\Api\Callbacks;
+namespace PluginRunTwo\Api\Callbacks;
 
 class TaxonomyCallbacks
 {
@@ -16,7 +16,7 @@ class TaxonomyCallbacks
     }
 
     public function taxonomySanitize( $input )
-    {   
+    {
 
         $output = get_option('ninja_plugin_one_tax_option');
 
@@ -26,16 +26,16 @@ class TaxonomyCallbacks
             return $output;
         }
 
-    
+
 
         if(!$output){
 
-           
+
             $output =    array($input['taxonomy'] => $input);
 
            return $output;
         }
- 
+
         foreach ($output as $key => $value) {
             if ($input['taxonomy'] === $key) {
                 $output[$key] = $input;
@@ -105,7 +105,7 @@ class TaxonomyCallbacks
 		foreach ($post_types as $post) {
 
 			if ( isset($_POST["edit_taxonomy"]) ) {
-                
+
 				$checked = isset($checkbox[$_POST["edit_taxonomy"]][$name][$post]) ?: false;
 			}
 

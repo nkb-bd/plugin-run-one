@@ -21,10 +21,10 @@
 
                 <h4 class=" ">Preview of Cards from Post ID : <?php echo $id ?> </h4>
                 <div class=" plugin-one-card-mt-20  plugin-one-card-mb-20">
-                    <code > <span>[ </span>pluginrunone_card id="<?php echo $id;?>"<span>]</span> </code>
+                    <code > <span>[ </span>PluginRunTwo_card id="<?php echo $id;?>"<span>]</span> </code>
                 </div>
 
-                <?php echo do_shortcode('[pluginrunone_card id="'.$id.'" ]')?>
+                <?php echo do_shortcode('[PluginRunTwo_card id="'.$id.'" ]')?>
 
             </div>
         </main>

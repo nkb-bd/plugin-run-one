@@ -5,7 +5,7 @@
  * @package plugin run one
  */
 
-namespace PluginRunOne\Base;
+namespace PluginRunTwo\Base;
 
 class SettingsLink extends BaseController
 {

@@ -5,11 +5,11 @@
  */
 
 
-namespace PluginRunOne\Api;
+namespace PluginRunTwo\Api;
 
 /**
  * Class SettingsApi
- * @package PluginRunOne\Api
+ * @package PluginRunTwo\Api
  */
 class SettingsApi
 {

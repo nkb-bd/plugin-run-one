@@ -1,6 +1,16 @@
 <template>
     <div class="cc-main-container">
 
+
+        <el-select v-model="value" placeholder="Grid Source">
+            <el-option
+                    v-for="item in gridSource"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value">
+            </el-option>
+        </el-select>
+
         <el-form :model="formData" :rules="rules" ref="formData" label-width="140px" class="cc-formdata">
             <!--                            card name-->
             <el-form-item label="Card name" prop="cardName">
@@ -83,6 +93,7 @@
     </div>
 </template>
 <script>
+
     // import AddCard from './AddCard';
 
     export default {
@@ -91,6 +102,20 @@
         props:['edit','id'],
         data() {
             return {
+                gridSource:[
+                    {
+                        label:'Post',
+                        value:'post'
+                    },
+                    {
+                        label:'Fluent Form',
+                        value:'fluent-from'
+                    },
+                    {
+                        label:'Ninja Table',
+                        value:'ninja-table'
+                    }
+                ],
                 formData: {
                     cardName: '',
                     postType: '',

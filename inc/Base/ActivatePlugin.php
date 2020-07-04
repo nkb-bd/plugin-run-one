@@ -1,17 +1,17 @@
 <?php
 
 /**
- * @package plugin run one 
+ * @package plugin run one
  */
 
 
-namespace PluginRunOne\Base;
+namespace PluginRunTwo\Base;
 
 class ActivatePlugin  extends BaseController
 {
-	
+
 	public function activate()
-	{	
+	{
 		$this->flush();
 		$this->createTables();
         $default = array();

@@ -1,10 +1,11 @@
 <?php
 
 
-namespace PluginRunOne\Base\CardCreator;
+namespace PluginRunTwo\Base\GridCreator;
 
 
-use PluginRunOne\Base\BaseController;
+
+use PluginRunTwo\Base\BaseController;
 
 class CardPreview extends BaseController
 {
@@ -16,10 +17,10 @@ class CardPreview extends BaseController
     public function preview()
     {
 
-        if (isset($_GET['plugin_run_one_card_card_preview']) && $_GET['plugin_run_one_card_card_preview'] != '') {
-            $id = $_GET['plugin_run_one_card_card_preview'];
+        if (isset($_GET['plugin_run_two_card_card_preview']) && $_GET['plugin_run_two_card_card_preview'] != '') {
+            $id = $_GET['plugin_run_two_card_card_preview'];
 
-            $renderObj = new \PluginRunOne\Base\CardCreator\Render();
+            $renderObj = new \PluginRunTwo\Base\GridCreator\Render();
             if ($renderObj->getFrontEndSetting($id)) {
 
                 echo $this->loadView('templates/card-preview', $id);

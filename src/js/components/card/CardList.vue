@@ -40,7 +40,7 @@
                         <el-table-column label="Short Code" width="250">
                             <template slot-scope="scope" >
                                 <div  class="shortcode-text">
-                                    [pluginrunone_card id="{{ scope.row.id }}" ]
+                                    [PluginRunTwo_card id="{{ scope.row.id }}" ]
 
                                 </div>
 
@@ -78,6 +78,12 @@
 
         </el-card>
 
+        <el-card>
+            <div>
+                {{testData}}
+            </div>
+        </el-card>
+
     </div>
 </template>
 <script>
@@ -91,6 +97,7 @@
                 tableData: [],
                 dialogTableVisible : false,
                 editId :'',
+                testData: ''
             };
         },
         methods: {
@@ -107,20 +114,33 @@
                     }
                 )
             },
+            getTestData(){
+                console.log('xx')
+                this.$adminGet({
+                    route: "get_fluentform_forms",
+                }).then((response)=>{
+
+                    console.log(response)
+
+                    }
+                )
+            },
             handleEdit(index, row) {
                 this.editId = index;
                 this.dialogTableVisible = true;
 
             },
             preview(index) {
-                    window.open(window.pluginRunOneCardAdmin.siteurl+'/?plugin_run_one_card_card_preview='+index,'_blank')
+                    window.open(window.PluginRunTwoCardAdmin.siteurl+'/?plugin_run_two_card_card_preview='+index,'_blank')
             }
         },
         computed : {
 
         },
         mounted() {
+            console.log('ok')
             this.getData();
+            this.getTestData();
         },
         components: {
             CardForm,

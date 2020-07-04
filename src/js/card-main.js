@@ -2,21 +2,21 @@ import Vue from './elements';
 import Router from 'vue-router';
 
 
-import PluginRunOneCard from './card-ajax-connector';
+import PluginRunTwoCard from './card-ajax-connector';
 
 
-window.PluginOneCardClass = new PluginRunOneCard();
+window.PluginOneCardClass = new PluginRunTwoCard();
 
 
-window.PluginRunOneCard = new window.PluginOneCardClass.Vue();
+window.PluginRunTwoCard = new window.PluginOneCardClass.Vue();
 
 
 window.PluginOneCardClass.Vue.mixin({
   methods: {
-    // $get: window.PluginRunOneCard.$get,
+    // $get: window.PluginRunTwoCard.$get,
     $adminGet: window.PluginOneCardClass.$adminGet,
     $adminPost: window.PluginOneCardClass.$adminPost,
-    // $post: window.PluginRunOneCard.$post,
+    // $post: window.PluginRunTwoCard.$post,
 
   }
 });
