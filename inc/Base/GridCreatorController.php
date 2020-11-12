@@ -31,25 +31,23 @@ class GridCreatorController extends BaseController
         if (  $this->featureActivated( 'card_manager' )=='false' ) {
             return;
         }
+        
+        // grid ajax handler
+        (new \PluginRunTwo\Base\GridCreator\GridAjaxHandler())->register();
         // fluent form data
+        
         $ff = new \PluginRunTwo\Base\GridCreator\FluentFormProvider();
         $ff->register();
+    
         $this->settings = new SettingsApi();
-
-        $this->callbacks = new CardManagerCallbacks();
-
-        // $this->callbacks = new CptCallbacks();
-
         $this->setSubpages();
-
-        // $this->setSections();
-
-        // $this->setFields();
-
+    
+    
+    
         $this->settings->addSubPages( $this->subpages )->register();
-
-        // $this->storeCustomPostTypes();
-
+    
+    
+    
         if ( ! empty( $this->custom_post_types ) ) {
             add_action( 'init', array( $this, 'registerCustomPostTypes' ) );
         }
@@ -61,21 +59,7 @@ class GridCreatorController extends BaseController
 
     }
 
-    public function setSubpages()
-    {
-        $this->subpages = array(
-            array(
-                'parent_slug' => 'ninja_plugin_one',
-                'page_title' => 'Cards created from Post',
-                'menu_title' => 'Card Manager',
-                'capability' => 'manage_options',
-                'menu_slug' => 'ninja_plugin_one#/card_manager',
-                'callback' => array( $this->callbacks, 'adminViewCard' )
-            )
-        );
-    }
-
-
+    
 
     public function registerShortcode()
     {
@@ -89,14 +73,28 @@ class GridCreatorController extends BaseController
                 if (!$args['id']) {
                     return;
                 }
-
-                $render = new \PluginRunTwo\Base\CardCreator\Render();
+               
+                $render = new \PluginRunTwo\Base\GridCreator\Render();
                 return $render->renderShortcode($args['id']);
 
             });
     }
-
-
-
-
+    
+    public function setSubpages()
+    {
+        $this->subpages = array(
+            array(
+                'parent_slug' => 'ninja_plugin_one',
+                'page_title' => 'Grid Creator',
+                'menu_title' => 'Grid Creator',
+                'capability' => 'manage_options',
+                'menu_slug' => 'admin.php?page=ninja_plugin_one#/card_manager/card_list',
+                'callback' => '' //for php function on click Ex : load admin fields file
+            )
+        );
+    }
+    
+    
+    
+    
 }

@@ -24,7 +24,7 @@ class Enque extends BaseController
 
         if(isset($_GET['page']) && $_GET['page'] == 'ninja_plugin_one') {
             add_filter('admin_footer_text', function ($text) {
-                return 'Thank you for checking plugin run one  : )';
+                return 'Thank you for checking  the plugin   : )';
             });
             wp_enqueue_script(
                 'plugin-run-one-card-admin',
@@ -32,6 +32,13 @@ class Enque extends BaseController
                 '', //dependency
                 $this->version,
                 true //load in footer
+            );
+
+            wp_enqueue_style(
+                'plugin-run-one-card-public',
+                $this->plugin_url.'assets/public/css/plugin-one-card-public.css',
+                '', //dependency
+                $this->version,
             );
 
             //js
@@ -45,6 +52,7 @@ class Enque extends BaseController
                 'ajaxurl'             => admin_url('admin-ajax.php'),
                 'siteurl'             => site_url(),
                 'user_id'             => $user_id,
+                'date_format'         => get_option( 'date_format' )
             );
             wp_localize_script('plugin-run-one-card-admin', 'PluginRunTwoCardAdmin', $adminVars);
 

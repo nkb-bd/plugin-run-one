@@ -3,7 +3,7 @@ import lang from 'element-ui/lib/locale/lang/en';
 import locale from 'element-ui/lib/locale';
 import 'element-ui/lib/theme-chalk/reset.css'
 
-
+import draggable from 'vuedraggable'
 
 
 import {
@@ -56,9 +56,11 @@ import {
     DropdownMenu,
     Upload,
     Notification,
-    Card
+    Card,
+    Divider
 } from 'element-ui';
 
+Vue.use(Divider);
 Vue.use(Button);
 Vue.use(Card);
 Vue.use(Dropdown);
@@ -107,6 +109,7 @@ Vue.use(Col);
 Vue.use(Transfer);
 Vue.use(DatePicker);
 Vue.use(Submenu);
+Vue.use(draggable);
 
 Vue.prototype.$message = Message;
 Vue.prototype.$msgbox = MessageBox;

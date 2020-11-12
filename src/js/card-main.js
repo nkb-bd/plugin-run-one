@@ -17,6 +17,18 @@ window.PluginOneCardClass.Vue.mixin({
     $adminGet: window.PluginOneCardClass.$adminGet,
     $adminPost: window.PluginOneCardClass.$adminPost,
     // $post: window.PluginRunTwoCard.$post,
+    $showAjaxError(error) {
+      console.log(error)
+      if(error.responseJSON && error.responseJSON.message) {
+        this.$notify.error(error.responseJSON.message);
+      } else if(error.responseText) {
+        this.$notify.error(error.responseText);
+      }  else if(error.data.response) {
+        this.$notify.error(error.data.response);
+      } else {
+        this.$notify.error('Something is wrong when doing ajax request! Please try again');
+      }
+    },
 
   }
 });

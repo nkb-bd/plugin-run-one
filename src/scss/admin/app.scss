@@ -15,4 +15,42 @@ $--font-path: '/theme-chalk/fonts';
 
 @import "~element-ui/packages/theme-chalk/src/index";
 
+$dark : #3C4C55;
+$dark_off : #545c64;
+$opposite_dark : #eff3f5;
+$opposite_dark_hover : #ffffff;
+$dark_border : #5A6970;
+/*========= WPP header css =========*/
+.cc_one_section_header {
+  display: flex;
+  align-items: center;
+  background: $dark_off;
+  padding: 10px 15px;
+  color: #fff;
 
+  .cc_one_section_title {
+    flex: 1;
+    font-size: 16px;
+  }
+
+  .btn_preview {
+    font-size: 12px;
+    border-radius: 3px;
+    padding: 7px 15px;
+    margin-left: 10px;
+    display: inline-block;
+    line-height: 1;
+    white-space: nowrap;
+    cursor: pointer;
+    background: #fff;
+    border: 1px solid #dcdfe6;
+    color: #606266;
+    -webkit-appearance: none;
+    text-align: center;
+  }
+
+  .cc_one_section_actions {
+    display: flex;
+    align-items: center;
+  }
+}

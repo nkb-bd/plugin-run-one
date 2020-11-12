@@ -110,7 +110,7 @@ class CustomPostTypeController extends BaseController
                     'supports'              => array( 'title', 'editor', 'thumbnail' ),
                     'taxonomies'            => array( 'category', 'post_tag' ),
                     'hierarchical'          => false,
-                    'public'                => isset($option['public'])?: false ,
+                    'public'                => 'public' ,
                     'show_ui'               => true,
                     'show_in_menu'          => true,
                     'menu_position'         => 5,

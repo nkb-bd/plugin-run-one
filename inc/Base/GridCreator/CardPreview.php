@@ -16,15 +16,25 @@ class CardPreview extends BaseController
 
     public function preview()
     {
+    
+        //styles for front end
+        wp_enqueue_style(
+            'plugin-run-on-style-card',
+            $this->plugin_url.'assets/public/css/plugin-one-card-public.css',
+            '',
+            $this->version
+        );
 
         if (isset($_GET['plugin_run_two_card_card_preview']) && $_GET['plugin_run_two_card_card_preview'] != '') {
             $id = $_GET['plugin_run_two_card_card_preview'];
+            
+            
 
             $renderObj = new \PluginRunTwo\Base\GridCreator\Render();
-            if ($renderObj->getFrontEndSetting($id)) {
+            if ($renderObj->getGridSettings($id)) {
 
                 echo $this->loadView('templates/card-preview', $id);
-                exit;
+                exit();
 
             } else {
                 wp_redirect(home_url());
@@ -53,12 +63,12 @@ class CardPreview extends BaseController
         }
     }
 
-    public function loadView($path, $id)
+    public function loadView($pathToFile, $id)
     {
-        if (file_exists($this->plugin_path . '/' . $path . '.php')) {
+        if (file_exists($this->plugin_path . '/' . $pathToFile . '.php')) {
             ob_start();
-            //      card html
-            include_once("$this->plugin_path$path.php");
+            //grid html
+            include_once("$this->plugin_path$pathToFile.php");
             $content = ob_get_clean();
 
             ob_clean();

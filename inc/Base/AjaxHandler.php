@@ -9,6 +9,7 @@
 namespace PluginRunTwo\Base;
 
 use PluginRunTwo\Base\BaseController;
+use PluginRunTwo\Base\GridCreator\Render;
 
 class AjaxHandler extends  BaseController
 {
@@ -35,12 +36,12 @@ class AjaxHandler extends  BaseController
             'get_cpt_list_data' => 'getCptListData',
             'get_modules' => 'getModulesBase',
             'get_modules_db' => 'getModulesDb',
-            'update_card' => 'updateCard',
             'update_tax' => 'updateTax',
             'get_post_data' => 'getPostData',
             'get_taxonomies' => 'getTaxonomies',
             'get_list_data' => 'getListData',
             'get_post_data_by_id' => 'getPostDataById',
+            'get_admin_preview_for_post'=>'getAdminPreviewPost'
 
         );
 
@@ -235,7 +236,7 @@ class AjaxHandler extends  BaseController
     {
         $id = $_REQUEST['card_id'];
 
-        $data =  new \PluginRunTwo\Base\CardCreator\CardDataHandler;
+        $data =  new \PluginRunTwo\Base\GridCreator\CardDataHandler;
         $rednderData=  $data->getSingleCardData($id);
 
         wp_send_json_success(array(
@@ -256,74 +257,14 @@ class AjaxHandler extends  BaseController
 
     }
 
-    public function updateCard()
+   
+    
+    public function getAdminPreviewPost()
     {
-        $posdtData = $_REQUEST['data'];
-
-
-        $insertData = array(
-            'post_type'=>sanitize_text_field($posdtData['postType']),
-            'taxonomies'=>sanitize_text_field($posdtData['taxonomies']),
-            'category'=>sanitize_text_field($posdtData['category']),
-            'limit'=>sanitize_text_field($posdtData['limit']),
-            'cardImage'=>sanitize_text_field($posdtData['cardImage']),
-            'color'=>sanitize_text_field($posdtData['color']),
-            'view'=>sanitize_text_field($posdtData['view']),
-        );
-
-
-        global $wpdb;
-        $table_name = $wpdb->prefix . 'pluginone_cards';
-
-        try {
-            if (!empty($posdtData['id']&&isset($posdtData['id']))) {
-
-
-                $success= $wpdb->update(
-                    $table_name,
-                    array(
-                        'card_name' => sanitize_text_field($posdtData['cardName']),
-                        "user_id" => get_current_user_id(),
-                        "basicSettings" => json_encode($insertData),
-                        "created_at" => current_time('mysql', get_option('gmt_offset')),
-                        "deleted" => 0
-                ),
-                    array('id' => $posdtData['id'])
-                );
-
-                if(!$success){
-                    throw new Exception();
-                }
-            } else {
-
-                $success = $wpdb->insert(
-                    $table_name,
-                    array(
-                        'card_name' => sanitize_text_field($posdtData['cardName']),
-                        "user_id" => get_current_user_id(),
-                        "basicSettings" => json_encode($insertData),
-                        "created_at" => current_time('mysql', get_option('gmt_offset')),
-                        "deleted" => 0
-                    )
-                );
-                if(!$success){
-                    throw new Exception();
-                }
-                wp_send_json_success(array(
-                    'response' => 'success',
-                ), 200);
-
-            }
-        }
-
-        catch (Exception $ex) {
-            wp_send_json_error(array(
-                'response' => 'error',
-            ), 200);
-            dd($ex);
-        }
-
-
+       
+        $render = new Render();
+        echo $render->renderPreviewForAdmin();
+        exit;
     }
 
     public function getListData()

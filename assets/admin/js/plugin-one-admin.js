@@ -1903,9 +1903,9 @@ window.addEventListener("load", function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/nakib/Practice/wp_lab/wp-content/plugins/plugin-run-two/src/js/main.js */"./src/js/main.js");
-__webpack_require__(/*! /Users/nakib/Practice/wp_lab/wp-content/plugins/plugin-run-two/src/scss/admin/app.scss */"./src/scss/admin/app.scss");
-module.exports = __webpack_require__(/*! /Users/nakib/Practice/wp_lab/wp-content/plugins/plugin-run-two/src/scss/card-public.scss */"./src/scss/card-public.scss");
+__webpack_require__(/*! /Users/nakib/Practice/wp_lab/wp-content/plugins/plugin-run-two-v2/src/js/main.js */"./src/js/main.js");
+__webpack_require__(/*! /Users/nakib/Practice/wp_lab/wp-content/plugins/plugin-run-two-v2/src/scss/admin/app.scss */"./src/scss/admin/app.scss");
+module.exports = __webpack_require__(/*! /Users/nakib/Practice/wp_lab/wp-content/plugins/plugin-run-two-v2/src/scss/card-public.scss */"./src/scss/card-public.scss");
 
 
 /***/ })

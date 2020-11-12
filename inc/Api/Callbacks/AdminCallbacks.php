@@ -16,7 +16,7 @@ class AdminCallbacks extends BaseController
 	{
         do_action($this->plugin_prefix.'/render_admin_app');
 
-        echo '<div id="onecardapp"></div>';
+        echo '<style id="plugin_run_one_admin_dynamic_style"></style><div id="onecardapp"></div>';
 	}
 
 	public function renderAdminCpt()

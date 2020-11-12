@@ -3,68 +3,34 @@
 
         <el-card class="box-card">
 
-            <div slot="header" class="clearfix">
-                <h2>Manage Cards created from Post Types</h2>
-
-                <el-button class="pull-right" round @click="cardFormVisible = true" type="primary">Add New</el-button>
-                <el-button class="pull-right" round  @click="formModalVisible = true" type="primary">Add New</el-button>
-
-                <router-link to="/new_card">Add new 2</router-link>
-                <el-dialog
-
-                        :visible.sync="cardFormVisible"
-                        title="Add New Card"
-                        center>
-
-                    <CardForm />
-
-                </el-dialog>
-                <el-dialog
-
-                        :visible.sync="formModalVisible"
-                        title="New Grid "
-                        width="35%"
-                        center>
+            <el-row class="tac">
+<!--                hiding inner menu in new grid form-->
+                <el-col v-if="this.$router.currentRoute.name=='card_list'"  :span="4">
+                    <el-menu
+                            default-active="1"
+                            class="p-one-el-menu-vertical-inner"
+                            background-color="#545c64"
+                            text-color="#fff"
+                            active-text-color="#ffd04b">
 
 
-                           <div>
-                               <el-form>
-                               <el-form-item>
-
-                                   <el-select style="width:100%;background:#fff;"  v-model="sourceName" placeholder="Grid Source">
-                                       <el-option
-                                               v-for="item in gridSource"
-                                               :key="item.value"
-                                               :label="item.label"
-                                               :value="item.value">
-                                       </el-option>
-                                   </el-select>
-                               </el-form-item>
+                        <router-link :to="{name:'card_list'}">
+                            <el-menu-item index="1">
+                                Card List
+                            </el-menu-item>
+                        </router-link>
 
 
 
 
-                               <el-form-item  style="text-align:center;">
-                                   <el-button    @click="" type="primary">Next</el-button>
-                               </el-form-item>
-
-                               </el-form>
-
-                           </div>
-
-                </el-dialog>
+                    </el-menu>
+                </el-col>
 
 
-            </div>
+                    <router-view></router-view>
 
+            </el-row>
 
-            <el-tabs class="cc-inner-nav" tab-position="left">
-                <el-tab-pane label="Card List">
-                    <CardList />
-
-                </el-tab-pane>
-
-            </el-tabs>
 
         </el-card>
 
@@ -74,12 +40,12 @@
 </template>
 <script>
     import CardList from "../components/card/CardList";
-    import CardForm from "../components/card/CardForm";
 
     export default {
         name: 'Dashboard',
         data() {
             return {
+                showSidemenu:true,
                 gridSource:[
                     {
                         label:'Post',
@@ -87,7 +53,7 @@
                     },
                     {
                         label:'Fluent Form',
-                        value:'fluent-from'
+                        value:'fluent-form'
                     },
                     {
                         label:'Ninja Table',
@@ -113,7 +79,7 @@
                 console.log(tab, event);
             },
             getData(){
-                console.log('called');
+
                 this.$adminGet({
                     route: "get_list_data",
 
@@ -127,14 +93,40 @@
             },
             onSubmit() {
                 console.log('submit!');
+            },
+            goTolink(){
+                let card_routes = {
+                    'post':'post',
+                    'ff':'fluent_form',
+                    'nt':'ninja_table'
+                };
+                switch (this.sourceName) {
+                    case "post":
+                        this.$router.push({ name: 'new_card', params: { type: card_routes.post } });
+                        break;
+                    case "fluent-form":
+                        this.$router.push({ name: 'new_card', params: { type: card_routes.ff } });
+                        break;
+                    case "ninja-table":
+                        this.$router.push({ name: 'new_card', params: { type: card_routes.nt } });
+                        break;
+                    default:
+                        this.$router.push({ name: 'new_card', params: { type: card_routes.post } });
+                        break;
+
+                }
+
+
+                this.formModalVisible = false;
+
             }
+
 
         },
         mounted() {
 
         },
         components: {
-            CardForm,
             CardList
 
         },
@@ -154,6 +146,26 @@
     }
     .el-input--suffix .el-input__inner{
         background-color:transparent;
+    }
+    .el-header {
+        background-color: #B3C0D1;
+        color: #333;
+        line-height: 60px;
+    }
+    .p-one-el-menu-vertical-inner a {
+        color: #fff;
+    }
+    .p-one-el-menu-vertical-inner .is-active{
+        background-color: #24282d!important;
+    }
+    .box-card{
+        border-radius:0px;
+    }
+    .pull-right{
+        float: right;
+    }
+    .pull-left{
+        float: left;
     }
 </style>
 

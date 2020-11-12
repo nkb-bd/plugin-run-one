@@ -1,6 +1,6 @@
 <!--template for card creator grid view-->
-<h2 class="center-p"> <?php echo $card_name ?></h2>
-<div class="content-wrapper <?php echo $display_class ?>">
+<h2 class="center-p"> <?php echo $data['grid_name'] ?></h2>
+<div class="content-wrapper pr-one-<?php echo $data['view'] ?>">
 
 
 

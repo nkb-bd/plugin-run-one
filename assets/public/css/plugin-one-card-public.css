@@ -4,7 +4,6 @@
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
-  padding: 0.5rem;
 }
 
 .plugin-one-card {
@@ -170,4 +169,163 @@
 .center-p {
   margin: 0 auto;
   text-align: center;
+}
+
+.wp-cc-container {
+  max-width: 100%;
+}
+
+h1 {
+  font-size: 24px;
+  font-weight: 400;
+  text-align: center;
+}
+
+img {
+  height: auto;
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+.wp-cc-grid .btn {
+  padding: 0.8rem;
+  font-size: 14px;
+  text-transform: uppercase;
+  border-radius: 4px;
+  font-weight: 400;
+  cursor: pointer;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: transparent;
+}
+
+.wp-cc-grid-btn {
+  margin-top: auto;
+  margin-bottom: 20px;
+}
+
+.wp-cc-grid .btn:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
+.wp-cc-grid-item {
+  display: flex;
+}
+
+.wp-cc-grid-meta {
+  text-align: justify;
+}
+
+.wp-cc-grid-item {
+  width: 33%;
+}
+
+@media (max-width: 600px) {
+  .wp-cc-grid-item {
+    width: 100%;
+  }
+}
+
+.wp-cc-grid {
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 10px 0;
+  padding: 0;
+  width: 100%;
+  background-color: transparent;
+  border-radius: 0.25rem;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+}
+
+.pr-one-wrapper {
+  margin: 20px 0;
+}
+
+.wp-cc-grid-content {
+  height: 100%;
+  min-height: 200px;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.wp-cc-grid-image {
+  transition: transform 0.5s ease;
+  width: 100% !important;
+}
+
+.wp-cc-grid-image img {
+  width: 100%;
+}
+
+.wp-cc-grid-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: capitalize;
+  margin: 15px 0px;
+  min-height: 40px;
+}
+
+.wp-cc-grid-text {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin: 10px 0;
+  font-weight: 400;
+  min-height: 100px;
+}
+
+.cc-hover-zoom:hover .wp-cc-grid-image img {
+  transition: transform 0.5s ease;
+  transform: scale(1.35);
+}
+
+.wp-cc-grid-meta .wp-cc-grid-meta-item:first-child {
+  margin-left: 0;
+}
+
+.wp-cc-grid-meta .wp-cc-grid-meta-item {
+  margin-right: 10px;
+  font-size: 14px;
+  display: inline-block;
+}
+
+.wp-cc-grid-div {
+  margin: 10px;
+  width: 100%;
+  max-height: -webkit-max-content;
+  max-height: -moz-max-content;
+  max-height: max-content;
+}
+
+.wp-cc-grid-content {
+  padding: 10px;
+}
+
+.wp-cc-grid-comments-wrap.wp-cc-grid-meta-item {
+  float: right;
+  margin: 10px 0;
+}
+
+.cv-author-thumb {
+  width: 50px;
+  display: inline-block;
+  height: 50px;
+  border-radius: 100%;
+  overflow: hidden;
+  border: 1px solid #e1e1e1;
+  vertical-align: middle;
+  margin-right: 7px;
+}
+
+.wp-cc-grid-image {
+  max-height: 190px;
+  overflow: hidden;
+}
+
+.cc-field-list {
+  list-style: none;
+  margin: 20px 0px;
+  margin-top: 0px;
 }

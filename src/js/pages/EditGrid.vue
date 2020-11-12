@@ -1,20 +1,21 @@
 <template>
-    <div class="p-one-body">
+    <div class="p-one-body"  v-loading="loading">
 
-        <el-card class="box-card" shadow="none" >
+        <el-card class="box-card" shadow="none"  >
 
 
-
-            <div v-if="loadComponent == 'post'">
-                <PostForm/>
+            <div v-if="gridSource === 'post'">
+                <PostForm :edit='true'/>
             </div>
-            <div v-else-if="loadComponent == 'fluent_form'">
-                <FluentForm :fieldData = data />
 
+            <div v-else-if="gridSource === 'fluent_form'">
+
+                <FluentForm :edit='true'  />
             </div>
-            <div v-else-if="loadComponent == 'ninja_table'">
 
-                <NinjaTable  :columnData = data />
+            <div v-else-if="gridSource === 'ninja_table'">
+
+                <NinjaTable   :edit='true'  />
             </div>
 
 
@@ -29,31 +30,53 @@
     import FluentForm from "../components/card/FluentForm";
     import NinjaTable from "../components/card/NinjaTable";
     export default {
-        name: 'AddNewCard',
+        name: 'EditGrid',
         props: ['type','data'],
         data() {
             return {
                 active: 1,
                 isPost: false,
                 isFF: false,
-                isNT: false
+                isNT: false,
+                loading:false,
+                gridData:'',
+                gridSource:''
             };
         },
         methods: {
 
+            getEditData($id) {
 
+                 this.$adminPost({
+                        route: "get_card_data_by_id",
+                        id: $id,
+                        action: 'plugin_run_two_grid',
+                    })
+                     .then(res => {
+                         let settings = JSON.parse( res.data.basicSettings);
+                         this.gridSource = settings.grid_source;
+
+                     })
+
+                     .fail(error => {
+
+
+                     })
+                     .always(() => {
+                         this.loading = false;
+                     });
+
+            },
         },
         mounted() {
-
+            this.getEditData(this.$route.params.id)
 
         },
         components: {
 
         },
         computed:{
-           loadComponent(){
-               return this.type;
-           }
+
         },
         components : {
             PostForm, FluentForm, NinjaTable

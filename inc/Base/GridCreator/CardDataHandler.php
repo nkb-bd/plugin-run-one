@@ -25,7 +25,7 @@ class CardDataHandler
     {
         $post_data = array();
         //        all post types
-        $post_types = get_post_types( array( 'show_ui' => true ) ,'objects');
+        $post_types = get_post_types( array( 'show_ui' => true ,'public'   => true) ,'objects');
 
         foreach ($post_types as $post) {
             $post_data[]  = array('name'=>$post->name,'singular_name'=>$post->labels->singular_name);
@@ -33,6 +33,15 @@ class CardDataHandler
 
         return $post_data;
 
+    }
+    
+    public function getPostData($args ='')
+    {
+        $args = array(
+        );
+    
+        $posts = get_posts( $args );
+        wp_send_json_success($posts);
     }
     protected function getCategories()
     {
@@ -70,7 +79,6 @@ class CardDataHandler
 
         $table_name = $wpdb->prefix . 'pluginone_cards';
         $data = $wpdb->get_row("SELECT * FROM $table_name WHERE id = $id");
-
         return $data;
 
     }

@@ -60,14 +60,14 @@ class ActivatePlugin  extends BaseController
         global $wpdb;
         $charset_collate = $wpdb->get_charset_collate();
         $table_name = $wpdb->prefix . 'pluginone_cards';
-        $sql = "CREATE TABLE $table_name (
+        $sql = "CREATE TABLE ".$table_name." (
                                           `id` int(21) NOT NULL AUTO_INCREMENT PRIMARY KEY,
                                           `user_id` int(10) NULL,
                                           `card_name` varchar(255)  NULL,
-                                          `basicSettings` varchar(255)  NULL,
+                                          `basicSettings` varchar(1000)  NULL,
                                           `created_at` timestamp  NULL,
                                           `updated_at` timestamp  NULL,
-                                          `deleted` boolean not null default 0                                          
+                                          `deleted` boolean not null default 0
                                         ) $charset_collate;";
 
         if($forced) {
@@ -80,7 +80,7 @@ class ActivatePlugin  extends BaseController
     {
 
         global $wpdb;
-        if ($wpdb->get_var("SHOW TABLES LIKE '$tableName'") != $tableName) {
+        if ($wpdb->get_var("SHOW TABLES LIKE '".$tableName."'") != $tableName) {
             require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
             dbDelta($sql);
         }

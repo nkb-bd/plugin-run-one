@@ -5,17 +5,19 @@
     <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
     <meta http-equiv="Imagetoolbar" content="No"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><?php esc_html_e('Preview Form', 'fluentform') ?></title>
+    <title><?php esc_html_e('Preview ') ?></title>
     <?php
     wp_head();
     ?>
     <style type="text/css">
-
+        .pr-one{
+            margin:20px 30px;
+        }
     </style>
 </head>
 <body>
-<div class="wrap">
-    <div id="primary" class="content-area">
+<div class="pr-one">
+    <div class="content-area">
         <main id="main" class="site-main" role="main">
             <div class="preview-plugin-run-one-card-container center-p">
 

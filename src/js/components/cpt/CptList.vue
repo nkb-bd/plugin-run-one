@@ -119,7 +119,7 @@
                             }
                         );
                     })
-                    .catch(_ => {});
+
             },
             success(message , type) {
                 this.$notify({

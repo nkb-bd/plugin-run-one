@@ -4,7 +4,7 @@
 namespace PluginRunTwo\Base\GridCreator;
 
 
-class FluentFormProvider
+class   FluentFormProvider
 {
     public function register()
     {
