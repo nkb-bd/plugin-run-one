@@ -17,10 +17,5 @@ class SettingsLink extends BaseController
 
 	}
 
-	public function settings_link( $links ) {
-
-		$settings_link = '<a href="admin.php?page=ninja_plugin_one">Settings</a>';
-		array_push( $links, $settings_link );
-		return $links;
-	}
+	
 }

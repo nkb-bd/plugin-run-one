@@ -1,2 +1,2 @@
-# plugin-run-one
-A wordpress plugin using oop and laravel mix
+# plugin-run-two
+A wordpress plugin using php and vue

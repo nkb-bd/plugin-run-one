@@ -70,8 +70,6 @@ class CardPreview extends BaseController
             //grid html
             include_once("$this->plugin_path$pathToFile.php");
             $content = ob_get_clean();
-
-            ob_clean();
             return $content;
         }
     }

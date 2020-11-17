@@ -20,7 +20,7 @@
                                 {{posts.values[layoutData.title]}}
                             </h2>
 
-                            <div class="wp-cc-grid-meta cv-meta-icon-show">
+                            <div class="wp-cc-grid-meta cv-meta-icon-show"  v-if="posts.formatted_date">
 
                                 <span class="wp-cc-grid-comments-wrap wp-cc-grid-meta-item">
                                    {{posts.formatted_date}}

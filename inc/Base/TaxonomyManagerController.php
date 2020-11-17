@@ -19,13 +19,9 @@ use PluginRunTwo\Api\Callbacks\CptCallbacks;
 class TaxonomyManagerController extends BaseController
 {
     public $settings;
-
     public $callbacks;
-
     public $subpages = array();
-
     public $taxonomies = array();
-
     public $tax_callbacks;
 
 
@@ -42,15 +38,12 @@ class TaxonomyManagerController extends BaseController
         $this->callbacks = new AdminCallbacks();
 
         $this->tax_callbacks = new TaxonomyCallbacks();
-
-
+        
         $this->setSubPages();
-
-
+        
         // using method chaining creating sub pages
         $this->settings->addSubPages( $this->subpages )->register();
-
-
+        
         $this->storeCustomTaxonomies();
 
         if ( ! empty( $this->taxonomies ) ) {

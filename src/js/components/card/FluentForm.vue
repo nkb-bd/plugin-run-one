@@ -448,7 +448,7 @@
             formattedFieldData(){
 
                 let data = this.formData.fluentFormData.fieldData;
-                console.log(data);
+
                 if(!data){
                     return [];
                 }

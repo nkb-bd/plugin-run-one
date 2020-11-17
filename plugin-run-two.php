@@ -2,7 +2,7 @@
 /*
 	Plugin Name: Plugin run two
 	Plugin URI: #
-	Description: Test plugin
+	Description: Test plugin For Applying as Dev
 	Version: 0.0
 	Author: lukman.nakib@gmail.com-authlab
 	License: GPL v3

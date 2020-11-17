@@ -2,6 +2,7 @@
 
 <?php
 $GridCssId = 'pr_one_grid_'.$id;
+
 ?>
 <div class="pr-one-wrapper" id="<?php echo $GridCssId ?>">
     <h2 class="center-p"> <?php echo $data['grid_name'] ?></h2>

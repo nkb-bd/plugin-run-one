@@ -30,10 +30,7 @@ class CustomPostTypeController extends BaseController
         $this->settings = new SettingsApi();
         $this->setSubpages();
 
-
-
         $this->settings->addSubPages( $this->subpages )->register();
-
         $this->storeCustomPostTypes();
 
         if ( ! empty( $this->custom_post_types ) ) {
@@ -186,7 +183,7 @@ class CustomPostTypeController extends BaseController
 
     public function exportCpt($key)
     {
-
+        // not needed now
         $option = get_option( 'ninja_plugin_one_cpt_option' );
 
         if(array_key_exists($key,$option)){
@@ -197,7 +194,7 @@ class CustomPostTypeController extends BaseController
             require_once("$this->plugin_path/templates/cpt-export.php");
             $content = ob_get_clean();
             echo $content;
-            exit;
+            return;
         }
 
     }

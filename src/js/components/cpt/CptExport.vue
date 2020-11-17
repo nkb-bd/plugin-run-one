@@ -24,7 +24,7 @@
         <div >
             <h4>Select a post type</h4>
 
-            <pre class="prettyprint">
+            <pre class="prettyprint" v-if="html_data.length">
             {{html_data}}
             </pre>
         </div>
@@ -96,6 +96,10 @@
     .cc-main-container{
         padding: 20px;
     }
+    .prettyprint{
+        color:#e1f3d8;
+    }
+
     .shortcode-text{
         border:1px solid #bec6cc;
         border-radius:5px;

@@ -30,7 +30,7 @@ class BaseController
         $this->base_setting_managers = array(
             'cpt_manager' => 'CPT Manager',
             'taxonomy_manager' => ' Taxonomy Manager',
-            'card_manager' => ' Card Creator',
+            'card_manager' => ' Grid Manager',
 
         );
 

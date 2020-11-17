@@ -16,7 +16,7 @@
 
                         <router-link :to="{name:'card_list'}">
                             <el-menu-item index="1">
-                                Card List
+                                Grid List
                             </el-menu-item>
                         </router-link>
 

@@ -1,9 +1,6 @@
 <?php
 defined('ABSPATH') or die;
 
-// for laravel dd pkg
-//require_once __DIR__ . '/vendor/autoload.php';
-
 
 spl_autoload_register(function ($class) {
     $namespace = 'PluginRunTwo';

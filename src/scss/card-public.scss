@@ -1,5 +1,5 @@
 
-
+/// inhert font size
 .content-wrapper {
   margin: 0 auto;
   max-width: inherit!important;
@@ -174,24 +174,16 @@
   max-width: 100%;
 }
 
-h1 {
-  font-size: 24px;
-  font-weight: 400;
-  text-align: center;
-}
 
-img {
-  height: auto;
-  max-width: 100%;
-  vertical-align: middle;
-}
+
+
 
 .wp-cc-grid  .btn {
-  padding: 0.8rem;
-  font-size: 14px;
-  text-transform: uppercase;
+  padding: 6px 20px;
+  font-size: inherit;
+  text-transform: capitalize;
   border-radius: 4px;
-  font-weight: 400;
+  font-weight: 700;
   //display: block;
   cursor: pointer;
   text-align:center;
@@ -215,12 +207,15 @@ img {
 .wp-cc-grid-meta{
   text-align: justify;
 }
+.wp-cc-grid-meta img{
+  width:50px;
+}
 .wp-cc-grid-item {
   width: 33%;
 }
 @media (max-width: 600px) {
   .wp-cc-grid-item {
-    width: 100%;
+    width: 100%!important;
   }
 }
 
@@ -256,7 +251,7 @@ img {
   }
 }
 .wp-cc-grid-title {
-  font-size: 1.1rem;
+  font-size: inherit;
   font-weight: 700;
   letter-spacing: 1px;
   text-transform: capitalize;
@@ -265,7 +260,7 @@ img {
 }
 
 .wp-cc-grid-text {
-  font-size: 0.875rem;
+  font-size:inherit;
   line-height: 1.5;
   margin: 10px 0;
   font-weight: 400;
@@ -288,7 +283,7 @@ img {
 .wp-cc-grid-div{
   margin: 10px;
   width: 100%;
-  max-height: max-content;
+  height: max-content;
 }
 .wp-cc-grid-content{
   padding: 10px;
@@ -315,4 +310,8 @@ img {
   list-style: none;
   margin: 20px 0px;
   margin-top:0px;
+}
+
+.wp-cc-grid li{
+  margin: 0;
 }

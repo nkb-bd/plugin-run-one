@@ -30,7 +30,7 @@ class Enque extends BaseController
                 'plugin-run-one-card-admin',
                 $this->plugin_url.'assets/admin/js/plugin-one-card-admin.js',
                 '', //dependency
-                $this->version,
+                 $this->version,
                 true //load in footer
             );
 
@@ -38,11 +38,8 @@ class Enque extends BaseController
                 'plugin-run-one-card-public',
                 $this->plugin_url.'assets/public/css/plugin-one-card-public.css',
                 '', //dependency
-                $this->version,
+                 $this->version,
             );
-
-            //js
-
 
             //localize
             $user_id = get_current_user_id();
@@ -69,7 +66,7 @@ class Enque extends BaseController
                 'plugin-run-one',
                 $this->plugin_url.'assets/admin/js/plugin-one-admin.js',
                 '', //dependency
-                $this->version,
+                 $this->version,
                 true //load in footer
             );
         }

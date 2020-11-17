@@ -21,16 +21,18 @@ class Dashboard extends BaseController
 
 	public function register(){
 
-		$this->settings = new SettingsApi; // settings api for adding menu and pages
-		$this->callbacks = new AdminCallbacks;
-		$this->setPages();  //page and menu
+		$this->settings = new SettingsApi;            // settings api for adding menu and pages
+		$this->callbacks = new AdminCallbacks;        // callbacks api for adding callback function, currently not needed as vue will handle this
+		$this->setPages();                            // page and menu
         if (is_admin()) {
             $this->adminAjaxHandler();
         }
 		// using method chaining creating page and sub pagesÅ
 		$this->settings->addPages ( $this->pages )->withSubPages('Dashboard')->addSubPages( $this->subpages )->register();
-
-	}
+        add_filter( "plugin_action_links_" .$this->plugin, array( $this, 'settings_link' ) );
+        
+        
+    }
 
 	public function setPages()
 	{
@@ -53,6 +55,12 @@ class Dashboard extends BaseController
     {
         $adminAjax = new \PluginRunTwo\Base\AjaxHandler;
         $adminAjax->register();
+    }
+    public function settings_link( $links ) {
+        
+        $settings_link = '<a href="admin.php?page=ninja_plugin_one">Settings</a>';
+        array_push( $links, $settings_link );
+        return $links;
     }
 
 }

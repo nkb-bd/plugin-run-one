@@ -110,7 +110,7 @@ class Render extends BaseController
         $gridConfig['button_status'] =  $basic_settings['button_status'];
       
         $gridConfig['button_text'] =  $basic_settings['button_text'];
-        $settingsFormatted['field_border'] =  isset($basic_settings['field_border']) ?: '' ;
+        $settingsFormatted['field_border'] =  isset($basic_settings['field_border']) ? $basic_settings['field_border']: '' ;
         $settingsFormatted['borderColor'] =  isset($basic_settings['borderColor'])?$basic_settings['borderColor']:'';
         
     

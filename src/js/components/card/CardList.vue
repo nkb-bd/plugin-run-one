@@ -172,7 +172,6 @@
     // import AddCard from './../AddCard';
     import PostForm from "./PostForm";
     import Clipboard from 'clipboard';
-    const cityOptions = ['Shanghai', 'Beijing', 'Guangzhou', 'Shenzhen'];
 
     export default {
         name: 'CardList',
@@ -333,7 +332,6 @@
                     route: "get_fluentform_forms",
                 }).then((response)=>{
 
-                    console.log(response)
 
                     }
                 )
@@ -418,8 +416,6 @@
                             fields: this.checkedColumns
                         };
 
-                        console.log(query2)
-                        console.log('xx');
                         this.$router.push({ name: 'new_card',query: query2 ,params: { type: card_routes.nt , data : data2} });
                         break;
                     default:
@@ -437,7 +433,7 @@
 
         },
         mounted() {
-            console.log('ok')
+
             this.getData();
             this.getTestData();
             if(!window.wpf_clip_inited) {
@@ -469,6 +465,7 @@
         padding: 2px;
         background-color:#f5fdff;
         text-align:center;
+        display: inline-flex;
     }
 </style>
 

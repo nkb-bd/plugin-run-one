@@ -1945,7 +1945,6 @@ __webpack_require__.r(__webpack_exports__);
 // import AddCard from './../AddCard';
 
 
-var cityOptions = ['Shanghai', 'Beijing', 'Guangzhou', 'Shenzhen'];
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'CardList',
   data: function data() {
@@ -2099,9 +2098,7 @@ var cityOptions = ['Shanghai', 'Beijing', 'Guangzhou', 'Shenzhen'];
     getTestData: function getTestData() {
       this.$adminGet({
         route: "get_fluentform_forms"
-      }).then(function (response) {
-        console.log(response);
-      });
+      }).then(function (response) {});
     },
     handleEdit: function handleEdit(index, row) {
       // this.editId = index;
@@ -2195,8 +2192,6 @@ var cityOptions = ['Shanghai', 'Beijing', 'Guangzhou', 'Shenzhen'];
           var data2 = {
             fields: this.checkedColumns
           };
-          console.log(query2);
-          console.log('xx');
           this.$router.push({
             name: 'new_card',
             query: query2,
@@ -2224,7 +2219,6 @@ var cityOptions = ['Shanghai', 'Beijing', 'Guangzhou', 'Shenzhen'];
   mounted: function mounted() {
     var _this6 = this;
 
-    console.log('ok');
     this.getData();
     this.getTestData();
 
@@ -2651,7 +2645,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     formattedFieldData: function formattedFieldData() {
       var data = this.formData.fluentFormData.fieldData;
-      console.log(data);
 
       if (!data) {
         return [];
@@ -10076,7 +10069,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.cc-main-container{\n    padding: 20px;\n}\n.shortcode-text{\n    border:1px solid #bec6cc;\n    border-radius:5px;\n    padding: 2px;\n    background-color:#f5fdff;\n    text-align:center;\n}\n", ""]);
+exports.push([module.i, "\n.cc-main-container{\n    padding: 20px;\n}\n.shortcode-text{\n    border:1px solid #bec6cc;\n    border-radius:5px;\n    padding: 2px;\n    background-color:#f5fdff;\n    text-align:center;\n    display: inline-flex;\n}\n", ""]);
 
 // exports
 
@@ -10171,7 +10164,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.cc-main-container{\n    padding: 20px;\n}\n.shortcode-text{\n    border:1px solid #bec6cc;\n    border-radius:5px;\n    padding: 2px;\n    background-color:#f5fdff;\n}\n", ""]);
+exports.push([module.i, "\n.cc-main-container{\n    padding: 20px;\n}\n.prettyprint{\n    color:#e1f3d8;\n}\n.shortcode-text{\n    border:1px solid #bec6cc;\n    border-radius:5px;\n    padding: 2px;\n    background-color:#f5fdff;\n}\n", ""]);
 
 // exports
 
@@ -77096,21 +77089,28 @@ var render = function() {
                   ])
                 : _vm._e(),
               _vm._v(" "),
-              _c("div", { staticClass: "wp-cc-grid-meta cv-meta-icon-show" }, [
-                _c(
-                  "span",
-                  {
-                    staticClass: "wp-cc-grid-comments-wrap wp-cc-grid-meta-item"
-                  },
-                  [
-                    _vm._v(
-                      "\n                               " +
-                        _vm._s(posts.formatted_date) +
-                        "\n                            "
-                    )
-                  ]
-                )
-              ]),
+              posts.formatted_date
+                ? _c(
+                    "div",
+                    { staticClass: "wp-cc-grid-meta cv-meta-icon-show" },
+                    [
+                      _c(
+                        "span",
+                        {
+                          staticClass:
+                            "wp-cc-grid-comments-wrap wp-cc-grid-meta-item"
+                        },
+                        [
+                          _vm._v(
+                            "\n                               " +
+                              _vm._s(posts.formatted_date) +
+                              "\n                            "
+                          )
+                        ]
+                      )
+                    ]
+                  )
+                : _vm._e(),
               _vm._v(" "),
               _vm.layoutData.content_status == true ||
               _vm.layoutData.content_status == "true"
@@ -77453,9 +77453,11 @@ var render = function() {
       _c("div", [
         _c("h4", [_vm._v("Select a post type")]),
         _vm._v(" "),
-        _c("pre", { staticClass: "prettyprint" }, [
-          _vm._v("        " + _vm._s(_vm.html_data) + "\n        ")
-        ])
+        _vm.html_data.length
+          ? _c("pre", { staticClass: "prettyprint" }, [
+              _vm._v("        " + _vm._s(_vm.html_data) + "\n        ")
+            ])
+          : _vm._e()
       ])
     ],
     1
@@ -78258,7 +78260,7 @@ var render = function() {
                             [
                               _c("el-menu-item", { attrs: { index: "1" } }, [
                                 _vm._v(
-                                  "\n                                Card List\n                            "
+                                  "\n                                Grid List\n                            "
                                 )
                               ])
                             ],

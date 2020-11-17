@@ -5,10 +5,12 @@
 
 
         $cpt_data = $option[$key];
+        
 
         ?>
 // custom post type :<?php echo $cpt_data['post_type']?>
 // Register Custom Post Type
+
 function custom_post_type() {
 
 	$labels = array(

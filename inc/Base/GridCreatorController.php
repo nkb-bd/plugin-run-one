@@ -45,9 +45,7 @@ class GridCreatorController extends BaseController
     
     
         $this->settings->addSubPages( $this->subpages )->register();
-    
-    
-    
+        
         if ( ! empty( $this->custom_post_types ) ) {
             add_action( 'init', array( $this, 'registerCustomPostTypes' ) );
         }
@@ -59,7 +57,6 @@ class GridCreatorController extends BaseController
 
     }
 
-    
 
     public function registerShortcode()
     {
@@ -85,8 +82,8 @@ class GridCreatorController extends BaseController
         $this->subpages = array(
             array(
                 'parent_slug' => 'ninja_plugin_one',
-                'page_title' => 'Grid Creator',
-                'menu_title' => 'Grid Creator',
+                'page_title' => 'Grid Manager',
+                'menu_title' => 'Grid Manager',
                 'capability' => 'manage_options',
                 'menu_slug' => 'admin.php?page=ninja_plugin_one#/card_manager/card_list',
                 'callback' => '' //for php function on click Ex : load admin fields file

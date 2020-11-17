@@ -21,6 +21,7 @@ class ActivatePlugin  extends BaseController
 	}
 	public  function flush()
 	{
+          //    needs to be done for new custom post types just to be safe
 		flush_rewrite_rules();
 	}
 

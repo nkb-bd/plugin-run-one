@@ -21,7 +21,7 @@
         <main id="main" class="site-main" role="main">
             <div class="preview-plugin-run-one-card-container center-p">
 
-                <h4 class=" ">Preview of Cards from Post ID : <?php echo $id ?> </h4>
+                <h4 class=" ">Preview of Grid from Post ID : <?php echo $id ?> </h4>
                 <div class=" plugin-one-card-mt-20  plugin-one-card-mb-20">
                     <code > <span>[ </span>PluginRunTwo_card id="<?php echo $id;?>"<span>]</span> </code>
                 </div>
