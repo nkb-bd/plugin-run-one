@@ -16,7 +16,7 @@ export const routes = [
         component: Dashboard
     },
     {
-        path: '/card_manager',
+        path: '/card_manager/',
         name: 'card_manager',
         component: CardManager,
         children :[

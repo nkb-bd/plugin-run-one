@@ -55,7 +55,8 @@ class AjaxHandler extends  BaseController
 
     public function updateModules()
     {
-        $module_data = $_POST['data'];
+        $module_data = wp_unslash($_POST['data']);
+        
         $success =    update_option('ninja_plugin_one',$module_data);
         wp_send_json_success(array(
             'response' => $success,
@@ -207,17 +208,18 @@ class AjaxHandler extends  BaseController
 
         // array for creating main dashboard option checkboxes
         $options =    get_option('ninja_plugin_one');
-
+        $options =    json_decode ($options,true);
         foreach ( $this->base_setting_managers as $key => $value ) {
-            if($options[$key]=='true'){
+           
 
 
                 $modules[] = array(
                     'route' => $key,
                     'title' => $value,
+                    'status' => $options[$key]
 
                 );
-            }
+            
         }
         wp_send_json_success(array(
             'data'=> $modules,

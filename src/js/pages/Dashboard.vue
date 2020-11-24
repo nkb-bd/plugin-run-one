@@ -27,7 +27,7 @@
                             >
                             </el-switch>
                         </el-form-item>
-                        <el-form-item label="Card Creator">
+                        <el-form-item label="Grid Managner">
                             <el-switch
                                     style="display: block"
                                     v-model="formData.card_manager"
@@ -44,7 +44,20 @@
                     </el-form>
 
                 </el-tab-pane>
-                <el-tab-pane label="About" name="second">About</el-tab-pane>
+                <el-tab-pane label="About" name="second">
+                    <p>Plugin run two </p>
+                    <ol >
+                        <li>Grid Manager</li>
+                        <ul style="margin-left: 10px;list-style: inside;">
+                            <li>Create grid from post, fluent forms and ninja table</li>
+                            <li>Change grid layout skin & color</li>
+                            <li>Select fluent forms or ninja table fields or reorder them</li>
+                            <li>Change background color , border radius</li>
+                        </ul>
+                        <li>CPT Manager</li>
+                        <li>Taxonomy Manager</li>
+                    </ol>
+                </el-tab-pane>
             </el-tabs>
 
 
@@ -68,7 +81,7 @@
             onSubmit(){
 
                 this.$adminPost({
-                    data: this.formData,
+                    data: JSON.stringify(this.formData),
                     route: "update_modules"
                 }).then(()=>{
                     this.success('Modules  Updated','success');
@@ -104,11 +117,11 @@
             this.$adminGet({
                 route: "get_modules_db"
             }).then((res)=>{
-                   let modules = res.data.data;
+                    let modules = JSON.parse(res.data.data);
                     this.formData ={
-                        cpt_manager: (modules['cpt_manager']==='true'),
-                        taxonomy_manager: (modules['taxonomy_manager']==='true'),
-                        card_manager: (modules['card_manager'] == 'true'),
+                        cpt_manager: (modules['cpt_manager']===true),
+                        taxonomy_manager: (modules['taxonomy_manager']===true),
+                        card_manager: (modules['card_manager'] == true),
                     }
 
                 }

@@ -18,27 +18,29 @@ class BaseController
 	public $base_setting_managers;
 
 	public function __construct() {
-
-		$this->plugin_path = plugin_dir_path(dirname( __FILE__ ,2) );
-		$this->plugin_url = plugin_dir_url(dirname( __FILE__ ,2) );
-		$this->plugin = plugin_basename(dirname( __FILE__ ,3).'/plugin-run-one.php' );
-		$this->plugin_prefix = 'plugin_run_one';
-        $this->version = time();
+        
+        $this->plugin_path   = plugin_dir_path ( dirname ( __FILE__, 2 ) );
+        $this->plugin_url    = plugin_dir_url ( dirname ( __FILE__, 2 ) );
+        $this->plugin        = plugin_basename ( dirname ( __FILE__, 3 ) . '/plugin-run-one.php' );
+        $this->plugin_prefix = 'plugin_run_one';
+//        $this->version = PLUGIN_RUN_TWO_VERSION;
+        $this->version = time (); // to stop cahce
 //        $this->version = PLUGIN_RUN_TWO_VERSION;
         $this->database_version = '2';
-
+        
         $this->base_setting_managers = array(
-            'cpt_manager' => 'CPT Manager',
+            'cpt_manager'      => 'CPT Manager',
             'taxonomy_manager' => ' Taxonomy Manager',
-            'card_manager' => ' Grid Manager',
-
+            'card_manager'     => ' Grid Manager',
+        
         );
 
 	}
 
     public function featureActivated(String $key)
     {
-        $option = get_option('ninja_plugin_one');
+        $option = json_decode ( get_option('ninja_plugin_one'),true);
+        
         return isset($option[ $key ]) ? $option[ $key ] : false;
 	}
 }

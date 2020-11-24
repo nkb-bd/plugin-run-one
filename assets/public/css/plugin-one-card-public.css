@@ -181,6 +181,7 @@
   text-transform: capitalize;
   border-radius: 4px;
   font-weight: 700;
+  text-decoration: none;
   cursor: pointer;
   text-align: center;
   border: 1px solid rgba(255, 255, 255, 0.2);

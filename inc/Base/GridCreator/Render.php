@@ -102,65 +102,64 @@ class Render extends BaseController
             echo "<b>No data found !</b>";
             return false;
         }
-  
-        $basic_settings = json_decode( $rednderData->basicSettings,true);
-        $settingsFormatted = [];
-        $settingsFormatted['grid_source'] =  $basic_settings['grid_source'];
     
-        $gridConfig['button_status'] =  $basic_settings['button_status'];
-      
-        $gridConfig['button_text'] =  $basic_settings['button_text'];
-        $settingsFormatted['field_border'] =  isset($basic_settings['field_border']) ? $basic_settings['field_border']: '' ;
-        $settingsFormatted['borderColor'] =  isset($basic_settings['borderColor'])?$basic_settings['borderColor']:'';
-        
+        $basic_settings                   = json_decode ( $rednderData -> basicSettings, true );
+        $settingsFormatted                = [];
+        $settingsFormatted['grid_source'] = $basic_settings['grid_source'];
+    
+        $gridConfig['button_status'] = $basic_settings['button_status'];
+    
+        $gridConfig['button_text']         = $basic_settings['button_text'];
+        $settingsFormatted['field_border'] = isset( $basic_settings['field_border'] ) ? $basic_settings['field_border'] : '';
+        $settingsFormatted['borderColor']  = isset( $basic_settings['borderColor'] ) ? $basic_settings['borderColor'] : '';
+    
     
         switch ( $settingsFormatted['grid_source']) {
-           
+    
             case 'post':
-                $gridConfig['postType'] =  $basic_settings['postType'];
-                $gridConfig['category'] =  $basic_settings['category'];
-                $gridConfig['content_limit'] =  isset($basic_settings['content_limit'])? $basic_settings['content_limit']:30;
-                $gridConfig['limit'] =  $basic_settings['limit'];
-                
-                
-                $settingsFormatted['gridItems'] =  $this->getPostGridItems(  $gridConfig );
-                
+                $gridConfig['postType']      = $basic_settings['postType'];
+                $gridConfig['category']      = $basic_settings['category'];
+                $gridConfig['content_limit'] = isset( $basic_settings['content_limit'] ) ? $basic_settings['content_limit'] : 30;
+                $gridConfig['limit']         = $basic_settings['limit'];
+        
+        
+                $settingsFormatted['gridItems'] = $this -> getPostGridItems ( $gridConfig );
+        
                 break;
             case 'ninja_table':
-               
-                $gridConfig['ninjaTableData'] = $basic_settings['ninjaTableData'];
-                $gridConfig['formattedFieldList'] =  $basic_settings['formattedFieldList'];
-    
-                $gridConfig['limit'] = $basic_settings['limit'];
-                $gridConfig['title'] = $basic_settings['title'];
-                $gridConfig['title_status'] = $basic_settings['title_status'];
-                $gridConfig['content'] = $basic_settings['content'];
-                $gridConfig['content_status'] = $basic_settings['content_status'];
-                $gridConfig['img'] =  $basic_settings['img'];
-                $gridConfig['img_status'] =  $basic_settings['img_status'];
-                $gridConfig['button_link'] =  $basic_settings['button_link'];
-    
-                $settingsFormatted['gridItems'] =  $this->getNinjaTabletGridItems( $gridConfig );
-                
-                break;
-                
-            case 'fluent_form':
-                $gridConfig['fluentFormData'] = $basic_settings['fluentFormData'];
+        
+                $gridConfig['ninjaTableData']     = $basic_settings['ninjaTableData'];
                 $gridConfig['formattedFieldList'] = $basic_settings['formattedFieldList'];
-    
-                $gridConfig['limit'] = $basic_settings['limit'];
-                $gridConfig['title'] = $basic_settings['title'];
-                $gridConfig['title_status'] = $basic_settings['title_status'];
-                $gridConfig['content'] = $basic_settings['content'];
+        
+                $gridConfig['limit']          = $basic_settings['limit'];
+                $gridConfig['title']          = $basic_settings['title'];
+                $gridConfig['title_status']   = $basic_settings['title_status'];
+                $gridConfig['content']        = $basic_settings['content'];
                 $gridConfig['content_status'] = $basic_settings['content_status'];
-                $gridConfig['img'] =  $basic_settings['img'];
-                $gridConfig['img_status'] =  $basic_settings['img_status'];
-                $gridConfig['button_link'] =  $basic_settings['button_link'];
-                $gridConfig['formattedFieldList'] =  $basic_settings['formattedFieldList'];
-                $settingsFormatted['gridItems'] =  $this->getFluentFormGridItems( $gridConfig );
+                $gridConfig['img']            = $basic_settings['img'];
+                $gridConfig['img_status']     = $basic_settings['img_status'];
+                $gridConfig['button_link']    = $basic_settings['button_link'];
+        
+                $settingsFormatted['gridItems'] = $this -> getNinjaTabletGridItems ( $gridConfig );
+        
+                break;
     
-    
-    
+            case 'fluent_form':
+                $gridConfig['fluentFormData']     = $basic_settings['fluentFormData'];
+                $gridConfig['formattedFieldList'] = $basic_settings['formattedFieldList'];
+        
+                $gridConfig['limit']              = $basic_settings['limit'];
+                $gridConfig['title']              = $basic_settings['title'];
+                $gridConfig['title_status']       = $basic_settings['title_status'];
+                $gridConfig['content']            = $basic_settings['content'];
+                $gridConfig['content_status']     = $basic_settings['content_status'];
+                $gridConfig['img']                = $basic_settings['img'];
+                $gridConfig['img_status']         = $basic_settings['img_status'];
+                $gridConfig['button_link']        = $basic_settings['button_link'];
+                $gridConfig['formattedFieldList'] = $basic_settings['formattedFieldList'];
+                $settingsFormatted['gridItems']   = $this -> getFluentFormGridItems ( $gridConfig );
+        
+        
                 break;
             
         }
@@ -304,15 +303,14 @@ class Render extends BaseController
         
             $formattedEntries = $tempFieldItems =[];
             
-            
             foreach ($entries['submissions']['data'] as $key => $value) {
                 $value = $value->user_inputs = $this->prepareEntry($value, $fields);
                 // Prepare the entry with the selected columns.
                 
-                $title = $config['title_status'] === true ?  $value[$config['title']]: '';
-                $content = $config['content_status'] === true ? $value[$config['content']]:'';
-                $img = $config['img_status'] === true ? $value[$config['img']]:'';
-                $link = ($config['button_status'] === true) ? $value[$config['button_link']]:'';
+                $title   =  isset($config['title_status'] ) && $config['title_status'] === true ?  $value[$config['title']]: '';
+                $content =  isset($config['content_status'] )&& $config['content_status'] === true ? $value[$config['content']]:'';
+                $img     =  isset($config['img_status'] ) && $config['img_status'] === true ? $value[$config['img']]:'';
+                $link    =  isset($config['button_status'] ) && ($config['button_status'] === true) ? $value[$config['button_link']]:'#';
         
                 foreach ($config['formattedFieldList'] as $field){
                     if( $field['status'] === true){

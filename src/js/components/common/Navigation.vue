@@ -7,6 +7,7 @@
                     <router-link
                             tag="li"
                             v-for="menuItem in topMenus"
+                            v-if="menuItem.status === true"
                             :key="menuItem.route"
                             active-class="ninja-tab-active"
                             exact
@@ -20,7 +21,7 @@
         </el-menu>
 
         <div v-if="visibleWarning == true">
-            <el-alert title="Enable the module first !" type="warning"> </el-alert>
+            <el-alert title="Enable the module first !" type="error"> </el-alert>
         </div>
 
         <router-view @updateMenu="getModules"></router-view>
@@ -50,24 +51,33 @@
                     route: "get_modules"
                 }).then(response => {
                     // chceking modules from wp_options
-                    let modules = Object.values(response.data.data);
+
+                    let modules = response.data.data;
 
                     //adding default dashboard route
                     this.topMenus = modules;
-                    let test = {
+                    let dashboard = {
                         route: "",
-                        title: "Dashboard "
+                        title: "Dashboard ",
+                        status: true
                     };
-                    this.topMenus.unshift(test);
+
+
+
+                    this.topMenus.unshift(dashboard);
+
+
+
                     // setting default child route for card manager
-                    modules = modules.filter(function(x){
+                    modules = this.topMenus.filter(function(x){
                         if(x.route =='card_manager'){
-                            return x.route='card_manager/card_list';
+                             x.route='card_manager/card_list';
                         }
                         return x;
 
                     });
 
+                    // this.topMenus.route['card_manager'] = 'test';
                     this.routerCheck();
 
                 });
@@ -76,20 +86,20 @@
                 this.$adminGet({
                     route: "get_modules_db"
                 }).then(res => {
-                    this.modules = res.data.data;
+                    this.modules = JSON.parse(res.data.data);
                 });
                 this.$router.beforeEach((to, from, next) => {
                     let name = to.name;
                     next();
                     // check if modules saved in db
-
-                    // if (this.modules[name] === "true" || name == "dashboard") {
-                    //   next();
-                    //   this.visibleWarning = false;
-                    // } else {
-                    //   this.visibleWarning = true;
-                    //   next({ name: "dashboard" });
-                    // }
+                    // need to improve this
+                    if ((this.modules[name] === true || name == "dashboard") || (this.modules['card_manager'] === true && name === 'card_list' || name === 'card_edit')) {
+                      next();
+                      this.visibleWarning = false;
+                    } else {
+                        this.visibleWarning = true;
+                        next({ name: "dashboard" });
+                    }
                 });
             }
         },

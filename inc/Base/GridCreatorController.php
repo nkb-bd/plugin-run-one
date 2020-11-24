@@ -28,7 +28,7 @@ class GridCreatorController extends BaseController
 
     public function register()
     {
-        if (  $this->featureActivated( 'card_manager' )=='false' ) {
+        if (  $this->featureActivated( 'card_manager' )!==true ) {
             return;
         }
         

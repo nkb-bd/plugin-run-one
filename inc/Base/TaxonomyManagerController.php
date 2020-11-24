@@ -30,7 +30,7 @@ class TaxonomyManagerController extends BaseController
     public function register()
     {
         // check if activated in plugin settings from BaseController
-        if ($this->featureActivated('taxonomy_manager')=='false'){
+        if ($this->featureActivated('taxonomy_manager')!==true){
             return ;
         }
         $this->settings = new SettingsApi();

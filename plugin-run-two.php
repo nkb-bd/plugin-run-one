@@ -1,7 +1,7 @@
 <?php
 /*
 	Plugin Name: Plugin run two
-	Plugin URI: #
+	Plugin URI: https://nkb-bd.github.io/
 	Description: Test plugin For Applying as Dev
 	Version: 0.0
 	Author: lukman.nakib@gmail.com-authlab

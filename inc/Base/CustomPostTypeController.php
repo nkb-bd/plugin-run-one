@@ -24,7 +24,7 @@ class CustomPostTypeController extends BaseController
     public function register()
     {
 
-        if ( $this->featureActivated( 'cpt_manager' )== 'false'  ) {
+        if ( $this->featureActivated( 'cpt_manager' )!== true  ) {
             return;
         }
         $this->settings = new SettingsApi();

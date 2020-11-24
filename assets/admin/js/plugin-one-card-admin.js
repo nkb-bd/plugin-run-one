@@ -4044,6 +4044,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Navigation",
   data: function data() {
@@ -4067,24 +4068,25 @@ __webpack_require__.r(__webpack_exports__);
         route: "get_modules"
       }).then(function (response) {
         // chceking modules from wp_options
-        var modules = Object.values(response.data.data); //adding default dashboard route
+        var modules = response.data.data; //adding default dashboard route
 
         _this.topMenus = modules;
-        var test = {
+        var dashboard = {
           route: "",
-          title: "Dashboard "
+          title: "Dashboard ",
+          status: true
         };
 
-        _this.topMenus.unshift(test); // setting default child route for card manager
+        _this.topMenus.unshift(dashboard); // setting default child route for card manager
 
 
-        modules = modules.filter(function (x) {
+        modules = _this.topMenus.filter(function (x) {
           if (x.route == 'card_manager') {
-            return x.route = 'card_manager/card_list';
+            x.route = 'card_manager/card_list';
           }
 
           return x;
-        });
+        }); // this.topMenus.route['card_manager'] = 'test';
 
         _this.routerCheck();
       });
@@ -4095,18 +4097,22 @@ __webpack_require__.r(__webpack_exports__);
       this.$adminGet({
         route: "get_modules_db"
       }).then(function (res) {
-        _this2.modules = res.data.data;
+        _this2.modules = JSON.parse(res.data.data);
       });
       this.$router.beforeEach(function (to, from, next) {
         var name = to.name;
         next(); // check if modules saved in db
-        // if (this.modules[name] === "true" || name == "dashboard") {
-        //   next();
-        //   this.visibleWarning = false;
-        // } else {
-        //   this.visibleWarning = true;
-        //   next({ name: "dashboard" });
-        // }
+        // need to improve this
+
+        if (_this2.modules[name] === true || name == "dashboard" || _this2.modules['card_manager'] === true && name === 'card_list' || name === 'card_edit') {
+          next();
+          _this2.visibleWarning = false;
+        } else {
+          _this2.visibleWarning = true;
+          next({
+            name: "dashboard"
+          });
+        }
       });
     }
   },
@@ -5232,6 +5238,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Dashboard',
   data: function data() {
@@ -5249,7 +5268,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       this.$adminPost({
-        data: this.formData,
+        data: JSON.stringify(this.formData),
         route: "update_modules"
       }).then(function () {
         _this.success('Modules  Updated', 'success');
@@ -5285,11 +5304,11 @@ __webpack_require__.r(__webpack_exports__);
     this.$adminGet({
       route: "get_modules_db"
     }).then(function (res) {
-      var modules = res.data.data;
+      var modules = JSON.parse(res.data.data);
       _this2.formData = {
-        cpt_manager: modules['cpt_manager'] === 'true',
-        taxonomy_manager: modules['taxonomy_manager'] === 'true',
-        card_manager: modules['card_manager'] == 'true'
+        cpt_manager: modules['cpt_manager'] === true,
+        taxonomy_manager: modules['taxonomy_manager'] === true,
+        card_manager: modules['card_manager'] == true
       };
     });
   },
@@ -77338,26 +77357,28 @@ var render = function() {
               "ul",
               { staticClass: "cc-inline-list" },
               _vm._l(_vm.topMenus, function(menuItem) {
-                return _c(
-                  "router-link",
-                  {
-                    key: menuItem.route,
-                    class: ["ninja-tab el-menu-item"],
-                    attrs: {
-                      tag: "li",
-                      "active-class": "ninja-tab-active",
-                      exact: "",
-                      to: { path: "/" + menuItem.route }
-                    }
-                  },
-                  [
-                    _vm._v(
-                      "\n                    " +
-                        _vm._s(menuItem.title) +
-                        "\n                "
+                return menuItem.status === true
+                  ? _c(
+                      "router-link",
+                      {
+                        key: menuItem.route,
+                        class: ["ninja-tab el-menu-item"],
+                        attrs: {
+                          tag: "li",
+                          "active-class": "ninja-tab-active",
+                          exact: "",
+                          to: { path: "/" + menuItem.route }
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                    " +
+                            _vm._s(menuItem.title) +
+                            "\n                "
+                        )
+                      ]
                     )
-                  ]
-                )
+                  : _vm._e()
               }),
               1
             )
@@ -77370,7 +77391,7 @@ var render = function() {
             "div",
             [
               _c("el-alert", {
-                attrs: { title: "Enable the module first !", type: "warning" }
+                attrs: { title: "Enable the module first !", type: "error" }
               })
             ],
             1
@@ -78489,7 +78510,7 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "el-form-item",
-                    { attrs: { label: "Card Creator" } },
+                    { attrs: { label: "Grid Managner" } },
                     [
                       _c("el-switch", {
                         staticClass: "cc-admin-input",
@@ -78532,7 +78553,39 @@ var render = function() {
           ),
           _vm._v(" "),
           _c("el-tab-pane", { attrs: { label: "About", name: "second" } }, [
-            _vm._v("About")
+            _c("p", [_vm._v("Plugin run two ")]),
+            _vm._v(" "),
+            _c("ol", [
+              _c("li", [_vm._v("Grid Manager")]),
+              _vm._v(" "),
+              _c(
+                "ul",
+                {
+                  staticStyle: { "margin-left": "10px", "list-style": "inside" }
+                },
+                [
+                  _c("li", [
+                    _vm._v(
+                      "Create grid from post, fluent forms and ninja table"
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [_vm._v("Change grid layout skin & color")]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _vm._v(
+                      "Select fluent forms or ninja table fields or reorder them"
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [_vm._v("Change background color , border radius")])
+                ]
+              ),
+              _vm._v(" "),
+              _c("li", [_vm._v("CPT Manager")]),
+              _vm._v(" "),
+              _c("li", [_vm._v("Taxonomy Manager")])
+            ])
           ])
         ],
         1
@@ -98263,7 +98316,7 @@ var routes = [{
   name: 'dashboard',
   component: _pages_Dashboard__WEBPACK_IMPORTED_MODULE_0__["default"]
 }, {
-  path: '/card_manager',
+  path: '/card_manager/',
   name: 'card_manager',
   component: _pages_CardManager__WEBPACK_IMPORTED_MODULE_1__["default"],
   children: [{
