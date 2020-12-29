@@ -7,7 +7,7 @@
                 <el-row>
 
                     <el-button class="pull-right"  size="small"  @click="formModalVisible = true" type="primary">Add New</el-button>
-
+                    <small><i>*Make sure the container div is full width</i></small>
                     <el-dialog
                             :visible.sync="formModalVisible"
                             title="New Grid "

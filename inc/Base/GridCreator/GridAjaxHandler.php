@@ -17,18 +17,18 @@ class GridAjaxHandler extends BaseController
         $route = sanitize_text_field($_REQUEST['route']);
         
         $validRoutes = array(
-            'get_wp_posts' => 'getWpPostData',
-            'get_fluentform_forms' => 'getFluentformForms',
+            'get_wp_posts'               => 'getWpPostData',
+            'get_fluentform_forms'       => 'getFluentformForms',
             'get_fluentform_form_fields' => 'getFluentformFormFields',
-            'get_fluent_data' => 'getFluentData',
-            'get_ninja_tables' =>'getNinjaTables',
-            'get_ninja_tables_column' =>'getNinjaTablesColumn',
-            'get_ninja_table_data' =>'getNinjaTableData',
-            'get_new_grid_key' =>'getNewGridKey',
-            'update_card' => 'updateCard',
-            'get_card_data_by_id' => 'getCardDataById',
-            
-        
+            'get_fluent_data'            => 'getFluentData',
+            'get_ninja_tables'           => 'getNinjaTables',
+            'get_ninja_tables_column'    => 'getNinjaTablesColumn',
+            'get_ninja_table_data'       => 'getNinjaTableData',
+            'get_new_grid_key'           => 'getNewGridKey',
+            'update_card'                => 'updateCard',
+            'get_card_data_by_id'        => 'getCardDataById',
+
+
         );
         
         if (isset($validRoutes[$route])) {
@@ -54,8 +54,8 @@ class GridAjaxHandler extends BaseController
         
         $args = array(
             'post_status' => 'publish',
-            'post_type' => $postData['postType'],
-            'numberposts'=>$postData['limit']
+            'post_type'   => $postData['postType'],
+            'numberposts' => $postData['limit']
             
         );
         if(!empty($postData['category'])){
@@ -76,22 +76,20 @@ class GridAjaxHandler extends BaseController
             }
             $content =  do_shortcode($val->post_content);
     
-            $formattedPost[$key]['post_title'] = wp_trim_words($val->post_title, 40, '...')  ;
-            $formattedPost[$key]['formatted_content'] = wp_trim_words($content, $limit_post_content, '...')  ;
-            $formattedPost[$key]['formatted_date'] = get_the_date('',$val->ID)  ;
-            $formattedPost[$key]['formatted_author_name'] = get_the_author_meta( 'user_nicename' , $val->post_author );
-            $formattedPost[$key]['formatted_author_link'] = get_the_author_meta( 'user_url' , $val->post_author );
-            $img_url = (get_the_post_thumbnail_url ( $val -> ID, 'post-thumbnail' ))? get_the_post_thumbnail_url ( $val -> ID, 'post-thumbnail' ): $this->plugin_url .'assets/public/blank.png';
+            $formattedPost[$key]['post_title']            = wp_trim_words ( $val->post_title, 40, '...' );
+            $formattedPost[$key]['formatted_content']     = wp_trim_words ( $content, $limit_post_content, '...' );
+            $formattedPost[$key]['formatted_date']        = get_the_date ( '', $val->ID );
+            $formattedPost[$key]['formatted_author_name'] = get_the_author_meta ( 'user_nicename', $val->post_author );
+            $formattedPost[$key]['formatted_author_link'] = get_the_author_meta ( 'user_url', $val->post_author );
+            $img_url                                      = (get_the_post_thumbnail_url ( $val->ID, 'post-thumbnail' )) ? get_the_post_thumbnail_url ( $val->ID, 'post-thumbnail' ) : $this->plugin_url . 'assets/public/blank.png';
     
-            $formattedPost[$key]['formatted_thumbnail'] =  $img_url;
-            $formattedPost[$key]['formatted_link'] = get_permalink(  $val->ID );
+            $formattedPost[$key]['formatted_thumbnail'] = $img_url;
+            $formattedPost[$key]['formatted_link']      = get_permalink ( $val->ID );
+            
             if($avatar = get_avatar_url(get_the_author_meta($val->post_author)) ){
-                
                 $formattedPost[$key]['formatted_author_image'] = $avatar ;
-    
             }else{
-                $formattedPost[$key]['formatted_author_image'] =' https://secure.gravatar.com/avatar/1e01ea5e304a25eaec5bec5560e619a7?s=64&d=mm&r=g' ;
-    
+                $formattedPost[$key]['formatted_author_image'] ='https://secure.gravatar.com/avatar/1e01ea5e304a25eaec5bec5560e619a7?s=64&d=mm&r=g' ;
             }
         
         }
@@ -145,7 +143,7 @@ class GridAjaxHandler extends BaseController
             $formData = $_REQUEST['data'];
             
             $fields = $formData['fieldData'] ;
-            $limit = $formData['limit'] ;
+            $limit  = $formData['limit'] ;
             
             $formId = $formData['formId'];
             // we need this short-circuite to overwrite fluentform entry permissions
@@ -267,9 +265,9 @@ class GridAjaxHandler extends BaseController
     public function getNinjaTableData()
     {
           if (function_exists('ninja_table_get_table_columns')) {
-              $id =  $_REQUEST['data']['tableId'];
-              $limit =  $_REQUEST['data']['limit'];
-              $columns =  $_REQUEST['data']['columnData'];
+              $id      = $_REQUEST['data']['tableId'];
+              $limit   = $_REQUEST['data']['limit'];
+              $columns = $_REQUEST['data']['columnData'];
               if(!$id || !$columns){
                   wp_send_json_error('No Id and Column', 200);
     
@@ -355,11 +353,11 @@ class GridAjaxHandler extends BaseController
                 $success= $wpdb->update(
                     $table_name,
                     array(
-                        'card_name' => sanitize_text_field($insertData['grid_name']),
-                        "user_id" => get_current_user_id(),
-                        "basicSettings" => json_encode($insertData),
-                        "updated_at" => current_time('mysql', get_option('gmt_offset')),
-                        "deleted" => 0
+                        'card_name'     => sanitize_text_field ( $insertData['grid_name'] ),
+                        "user_id"       => get_current_user_id (),
+                        "basicSettings" => json_encode ( $insertData ),
+                        "updated_at"    => current_time ( 'mysql', get_option ( 'gmt_offset' ) ),
+                        "deleted"       => 0
                     ),
                     array('id' => $insertData['id'])
                 );
@@ -377,12 +375,12 @@ class GridAjaxHandler extends BaseController
                 $success = $wpdb->insert(
                     $table_name,
                     array(
-                        'card_name' => sanitize_text_field($insertData['grid_name']),
-                        "user_id" => get_current_user_id(),
-                        "basicSettings" => json_encode($insertData),
-                        "created_at" => current_time('mysql', get_option('gmt_offset')),
-                        "updated_at" => current_time('mysql', get_option('gmt_offset')),
-                        "deleted" => 0
+                        'card_name'     => sanitize_text_field ( $insertData['grid_name'] ),
+                        "user_id"       => get_current_user_id (),
+                        "basicSettings" => json_encode ( $insertData ),
+                        "created_at"    => current_time ( 'mysql', get_option ( 'gmt_offset' ) ),
+                        "updated_at"    => current_time ( 'mysql', get_option ( 'gmt_offset' ) ),
+                        "deleted"       => 0
                     )
                 );
     

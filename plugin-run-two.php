@@ -2,8 +2,8 @@
 /*
 	Plugin Name: Plugin run two
 	Plugin URI: https://nkb-bd.github.io/
-	Description: Test plugin For Applying as Dev
-	Version: 0.0
+	Description: Test Plugin For Applying as Dev
+	Version: 1.0
 	Author: lukman.nakib@gmail.com-authlab
 	License: GPL v3
 	Text Domain:   PluginRunTwo
@@ -15,7 +15,7 @@ defined( 'ABSPATH' ) or die( '!' );
 
 if(!defined('PLUGIN_RUN_TWO_VERSION')){
 
-    define('PLUGIN_RUN_TWO_VERSION','0.1');
+    define('PLUGIN_RUN_TWO_VERSION','1.0');
     define('PLUGIN_RUN_TWO_MENU_NAME','Plugin Run Two');
     include dirname( __FILE__ ) . '/autoload.php';
 

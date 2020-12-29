@@ -1,8 +1,8 @@
 <template>
-    <div class="cc-main-container">
+    <div class="cc-main-container" v-loading="loading">
 
             <el-tabs type="border-card" v-model="activeName">
-                <el-tab-pane label="Manage Settings" name="first">
+                <el-tab-pane label="Manage Modules" name="first">
 
                     <el-form ref="form" :model="formData" label-width="120px">
 
@@ -70,6 +70,7 @@
         data() {
             return {
                 activeName: 'first',
+                loading : false,
                 formData: {
                     cpt_manager: false,
                     taxonomy_manager: false,
@@ -79,7 +80,7 @@
         },
         methods: {
             onSubmit(){
-
+                this.loading = true;
                 this.$adminPost({
                     data: JSON.stringify(this.formData),
                     route: "update_modules"
@@ -88,7 +89,10 @@
                     this.$emit('updateMenu',1);
 
                     }
-                )
+                ).always(()=>{
+                    this.loading = false;
+
+                })
             },
             success(message , type) {
                 this.$notify({
@@ -114,6 +118,8 @@
 
         },
         mounted() {
+            this.loading = true;
+
             this.$adminGet({
                 route: "get_modules_db"
             }).then((res)=>{
@@ -125,7 +131,10 @@
                     }
 
                 }
-            )
+            ).always(()=>{
+                this.loading = false;
+
+            })
         },
         components: {
 

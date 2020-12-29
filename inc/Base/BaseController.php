@@ -24,7 +24,7 @@ class BaseController
         $this->plugin        = plugin_basename ( dirname ( __FILE__, 3 ) . '/plugin-run-one.php' );
         $this->plugin_prefix = 'plugin_run_one';
 //        $this->version = PLUGIN_RUN_TWO_VERSION;
-        $this->version = time (); // to stop cahce
+        $this->version = time (); // to stop cache turn of when done building it
 //        $this->version = PLUGIN_RUN_TWO_VERSION;
         $this->database_version = '2';
         
@@ -40,7 +40,6 @@ class BaseController
     public function featureActivated(String $key)
     {
         $option = json_decode ( get_option('ninja_plugin_one'),true);
-        
         return isset($option[ $key ]) ? $option[ $key ] : false;
 	}
 }

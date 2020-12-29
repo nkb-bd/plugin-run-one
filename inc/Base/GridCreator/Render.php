@@ -48,15 +48,13 @@ class Render extends BaseController
         ob_start();
         if (!$data){
            
-            //      card html
-           echo '<i> No data found for this ID ! </i>';
+            //   card html
+             echo '<i> No data found for this ID ! </i>';
     
             $content = ob_get_clean();
             return $content;
         }
         
-
-      
         //grid html
         $gridTemplate = $data['grid_template'];
         
@@ -78,8 +76,6 @@ class Render extends BaseController
         $gridTemplate = $data['grid_template'];
  
         ob_start();
-//            $css = $this->getStylesForAdminPreview();
-//            echo '<style>'.$css.'</style>';
     
         if (!file_exists($this->plugin_path . '/templates/card-preview.php')) {
            echo 'Missing Template File '. $gridTemplate . '.php';
@@ -91,7 +87,7 @@ class Render extends BaseController
         return ob_get_clean();
 
     }
-
+    // need to work on this to improve
     public function getGridSettings($id)
     {
         $data =  new \PluginRunTwo\Base\GridCreator\CardDataHandler ;
@@ -165,28 +161,26 @@ class Render extends BaseController
         }
      
         //task later move theme inside postData array
-        $settingsFormatted['grid_name'] =  $basic_settings['grid_name'];
-      
-        $settingsFormatted['img_status'] =  $basic_settings['img_status'];
-        
-        $settingsFormatted['grid_template'] =  isset($basic_settings['grid_template'])?$basic_settings['grid_template'] : 'template-one';
+        $settingsFormatted['grid_name'] = $basic_settings['grid_name'];
+        $settingsFormatted['img_status'] = $basic_settings['img_status'];
+        $settingsFormatted['grid_template'] = isset( $basic_settings['grid_template'] ) ? $basic_settings['grid_template'] : 'template-one';
     
         //task later move theme inside contentData array
-        $settingsFormatted['columnNumber'] =  $basic_settings['columnNumber'];
-        $settingsFormatted['columnNumber'] =  $basic_settings['columnNumber'];
-        $settingsFormatted['img_status'] =  $basic_settings['img_status'];
-        $settingsFormatted['view'] =  $basic_settings['view'];
-        $settingsFormatted['limit'] =  $basic_settings['limit'];
-        
+        $settingsFormatted['columnNumber'] = $basic_settings['columnNumber'];
+        $settingsFormatted['columnNumber'] = $basic_settings['columnNumber'];
+        $settingsFormatted['img_status']   = $basic_settings['img_status'];
+        $settingsFormatted['view']         = $basic_settings['view'];
+        $settingsFormatted['limit']        = $basic_settings['limit'];
+    
         //task later move theme inside styleData array
-        $settingsFormatted['bgColor'] =  $basic_settings['bgColor'];
-        $settingsFormatted['fontColor'] =  $basic_settings['fontColor'];
-        $settingsFormatted['fontColor'] =  $basic_settings['fontColor'];
-        $settingsFormatted['content_align'] =  $basic_settings['content_align'];
-        $settingsFormatted['item_border_radius'] =  $basic_settings['item_border_radius'];
-        $settingsFormatted['button_text'] =  $basic_settings['button_text'];
-        $settingsFormatted['button_newtab'] =  $basic_settings['button_newtab'];
-        $settingsFormatted['button_status'] =  $basic_settings['button_status'];
+        $settingsFormatted['bgColor']            = $basic_settings['bgColor'];
+        $settingsFormatted['fontColor']          = $basic_settings['fontColor'];
+        $settingsFormatted['fontColor']          = $basic_settings['fontColor'];
+        $settingsFormatted['content_align']      = $basic_settings['content_align'];
+        $settingsFormatted['item_border_radius'] = $basic_settings['item_border_radius'];
+        $settingsFormatted['button_text']        = $basic_settings['button_text'];
+        $settingsFormatted['button_newtab']      = $basic_settings['button_newtab'];
+        $settingsFormatted['button_status']      = $basic_settings['button_status'];
         
      
         return $settingsFormatted;
@@ -250,11 +244,11 @@ class Render extends BaseController
             $formattedEntries = $tempFieldItems =[];
             foreach ($data as $key => $value) {
                 // Prepare the entry with the selected columns.
-                $title = $config['title_status'] === true ? $value[$config['title']]: '';
-                $content = $config['content_status'] === true ? $value[$config['content']]:'';
-                $img = $config['img_status'] === true ? $value[$config['img']]:'';
-                $link = isset( $value[$config['button_link']]) && $config['button_status'] === true ? $value[$config['button_link']]:'';
-              
+                $title   = $config['title_status'] === true ? $value[$config['title']] : '';
+                $content = $config['content_status'] === true ? $value[$config['content']] : '';
+                $img     = $config['img_status'] === true ? $value[$config['img']] : '';
+                $link    = isset( $value[$config['button_link']] ) && $config['button_status'] === true ? $value[$config['button_link']] : '';
+    
                 if(isset($config['formattedFieldList'])){
                     foreach ($config['formattedFieldList'] as $field){
                         if( $field['status'] === true && isset($value[$field['key']])){
@@ -308,9 +302,9 @@ class Render extends BaseController
                 // Prepare the entry with the selected columns.
                 
                 $title   =  isset($config['title_status'] ) && $config['title_status'] === true ?  $value[$config['title']]: '';
-                $content =  isset($config['content_status'] )&& $config['content_status'] === true ? $value[$config['content']]:'';
-                $img     =  isset($config['img_status'] ) && $config['img_status'] === true ? $value[$config['img']]:'';
-                $link    =  isset($config['button_status'] ) && ($config['button_status'] === true) ? $value[$config['button_link']]:'#';
+                $content =  isset($value[$config['content']] )&& $config['content_status'] === true ? $value[$config['content']]:'';
+                $img     =  isset($value[$config['img']] ) && $config['img_status'] === true ? $value[$config['img']]:'';
+                $link    =  isset($value[$config['button_link']]) && ($config['button_status'] === true) ? $value[$config['button_link']]:'#';
         
                 foreach ($config['formattedFieldList'] as $field){
                     if( $field['status'] === true){

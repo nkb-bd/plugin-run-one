@@ -213,12 +213,13 @@ class AjaxHandler extends  BaseController
            
 
 
-                $modules[] = array(
-                    'route' => $key,
-                    'title' => $value,
-                    'status' => $options[$key]
+            $modules[] = array(
+                'route' => $key,
+                'title' => $value,
+                'status' => isset($options[$key])?$options[$key]: false
 
-                );
+            );
+            
             
         }
         wp_send_json_success(array(

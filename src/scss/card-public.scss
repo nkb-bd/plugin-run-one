@@ -202,7 +202,8 @@
 
 .wp-cc-grid-item {
   display: flex;
-
+  min-width: 300px;
+  width: 33%;
 
 }
 .wp-cc-grid-meta{
@@ -211,9 +212,7 @@
 .wp-cc-grid-meta img{
   width:50px;
 }
-.wp-cc-grid-item {
-  width: 33%;
-}
+
 @media (max-width: 600px) {
   .wp-cc-grid-item {
     width: 100%!important;

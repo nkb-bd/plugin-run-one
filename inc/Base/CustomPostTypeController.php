@@ -56,11 +56,11 @@ class CustomPostTypeController extends BaseController
         $this->subpages = array(
             array(
                 'parent_slug' => 'ninja_plugin_one',
-                'page_title' => 'Custom Post Types',
-                'menu_title' => 'CPT Manager',
-                'capability' => 'manage_options',
-                'menu_slug' => 'admin.php?page=ninja_plugin_one#/cpt_manager',
-                'callback' => '' //for php function on click Ex : load admin fields file
+                'page_title'  => 'Custom Post Types',
+                'menu_title'  => 'CPT Manager',
+                'capability'  => 'manage_options',
+                'menu_slug'   => 'admin.php?page=ninja_plugin_one#/cpt_manager',
+                'callback'    => '' //for php function on click Ex : load admin fields file
             )
         );
     }

@@ -88,12 +88,14 @@
                 }).then(res => {
                     this.modules = JSON.parse(res.data.data);
                 });
+                let validRoutes = ['card_manager','card_list','card_edit','new_card'];
+
                 this.$router.beforeEach((to, from, next) => {
                     let name = to.name;
-                    next();
+
                     // check if modules saved in db
                     // need to improve this
-                    if ((this.modules[name] === true || name == "dashboard") || (this.modules['card_manager'] === true && name === 'card_list' || name === 'card_edit')) {
+                    if ( (name === 'dashboard' ) ||  (this.modules[name] === true ) || (this.modules['card_manager'] === true && validRoutes.indexOf(name)>0)) {
                       next();
                       this.visibleWarning = false;
                     } else {
